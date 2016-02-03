@@ -312,22 +312,6 @@ public class UI {
 		executiveAP = new ComboBox<>();
 		executiveAP.getItems().addAll("True", "False");
 		executiveAP.setPromptText("Executive Approval");
-		
-		//Button
-        Button addButton = new Button("Add");
-        addButton.setOnAction(e -> {
-			errors.setText("");
-			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
-				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), file);
-				RegitemID.clear();
-				itemName.clear();
-				window.close();
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				RegitemID.clear();
-				itemName.clear();
-			}
-		});
         
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(file));
@@ -338,11 +322,28 @@ public class UI {
         	UIManager.deleteButtonClicked(table, file);
         });
 		
-		HBox menu = new HBox();
+		//Button
+        Button addButton = new Button("Add");
+        addButton.setOnAction(e -> {
+			errors.setText("");
+			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
+				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), file);
+				RegitemID.clear();
+				itemName.clear();
+				table.setItems(UIManager.getItems(file));
+
+			} else {
+				errors.setText("Something Went Wrong. Try Again");
+				RegitemID.clear();
+				itemName.clear();
+			}
+		});
+
+        HBox menu = new HBox();
 		menu.setPadding(new Insets(10, 10, 10, 10));
 		menu.setSpacing(10);
 		menu.getChildren().addAll(RegitemID, itemName, executiveAP, addButton, deleteButton);
-    
+        
 		// Back Button
 		Button fileBack = new Button("Back");
 		fileBack.setOnAction(e -> {
