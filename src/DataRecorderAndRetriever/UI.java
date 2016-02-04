@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -26,6 +27,7 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
+		checkout.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Checkout", 250);
@@ -68,6 +70,7 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkinLayout = new VBox(10);
 		Scene checkin = new Scene(checkinLayout);
+		checkin.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Checkin", 250);
@@ -105,6 +108,8 @@ public class UI {
 		Stage window = new Stage();
 		VBox showLayout = new VBox(10), show2Layout = new VBox(10);
 		Scene show = new Scene(showLayout, 250, 250), show2 = new Scene(show2Layout, 500, 150);
+		show.getStylesheets().add("style.css");
+		show2.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Status", 250);
@@ -165,11 +170,67 @@ public class UI {
 		window.showAndWait();
 	}
 
+	// Inventory
+	public static void inventory(String file) {
+		Stage window = new Stage();
+		VBox inventoryLayout = new VBox(10);
+		Scene inventory = new Scene(inventoryLayout, 250, 250);
+		inventory.getStylesheets().add("style.css");
+		ItemManager manage = new ItemManager();
+		TableView<Item> table;
+
+		UIManager.windowBasic(window, "Inventory View", 750);
+
+		Label label = new Label();
+		label.setText("Inventory Viewer");
+		errors.setText("");
+
+		// reference column
+		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
+		referenceColumn.setMinWidth(50);
+		referenceColumn.setCellValueFactory(new PropertyValueFactory<>("reference"));
+
+		// name column
+		TableColumn<Item, Double> nameColumn = new TableColumn<>("Item Name");
+		nameColumn.setMinWidth(250);
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+		// available column
+		TableColumn<Item, String> availableColumn = new TableColumn<>("Available");
+		availableColumn.setMinWidth(50);
+		availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
+
+		// ID column
+		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
+		IDColumn.setMinWidth(150);
+		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+
+		table = new TableView<>();
+		table.setItems(UIManager.getItems(file));
+		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn);
+
+		// Back Button
+		Button fileBack = new Button("Back");
+		fileBack.setOnAction(e -> {
+			table.setItems(UIManager.getItems(file));
+			errors.setText("");
+			window.close();
+		});
+
+		inventoryLayout.getChildren().addAll(label, table, fileBack);
+		inventoryLayout.setAlignment(Pos.CENTER);
+
+		// Display window and wait for it to be closed before returning
+		window.setScene(inventory);
+		window.showAndWait();
+	}
+	
 	// Register Item
 	public static void register(String file) {
 		Stage window = new Stage();
 		VBox registerLayout = new VBox(10);
 		Scene register = new Scene(registerLayout, 250, 250);
+		register.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Register Item", 250);
@@ -216,6 +277,7 @@ public class UI {
 		Stage window = new Stage();
 		VBox removeLayout = new VBox(10);
 		Scene remove = new Scene(removeLayout, 250, 250);
+		remove.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Remove Item", 250);
@@ -264,18 +326,19 @@ public class UI {
 		window.showAndWait();
 	}
 
-	// Show Registry
+	// Item Manager
 	public static void registry(String file) {
 		Stage window = new Stage();
 		VBox registryLayout = new VBox(10);
 		Scene registry = new Scene(registryLayout, 250, 250);
+		registry.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 		TableView<Item> table;
 
-		UIManager.windowBasic(window, "Show Registry", 750);
+		UIManager.windowBasic(window, "Item Manager", 750);
 
 		Label label = new Label();
-		label.setText("Show Registry");
+		label.setText("Inventory Manager");
 		errors.setText("");
 
 		// reference column
@@ -302,10 +365,12 @@ public class UI {
 		TextField itemName = new TextField();
 		itemName.setPromptText("Item Name");
 		itemName.setMinWidth(200);
+		itemName.setMaxWidth(275);
 
-		// Name input
+		// ID input
 		TextField RegitemID = new TextField();
 		RegitemID.setPromptText("ID Number");
+		RegitemID.setMinWidth(75);
 		RegitemID.setMaxWidth(125);
 		
 		ComboBox<String> executiveAP;
@@ -342,6 +407,7 @@ public class UI {
         HBox menu = new HBox();
 		menu.setPadding(new Insets(10, 10, 10, 10));
 		menu.setSpacing(10);
+		menu.setAlignment(Pos.CENTER);
 		menu.getChildren().addAll(RegitemID, itemName, executiveAP, addButton, deleteButton);
         
 		// Back Button
@@ -365,6 +431,7 @@ public class UI {
 		Stage window = new Stage();
 		VBox changeLayout = new VBox(10);
 		Scene change = new Scene(changeLayout, 250, 250);
+		change.getStylesheets().add("style.css");
 		csvFileWriter write = new csvFileWriter();
 
 		UIManager.windowBasic(window, "Change Password", 250);
@@ -407,6 +474,7 @@ public class UI {
 		Stage window = new Stage();
 		VBox clearLayout = new VBox(10);
 		Scene clear = new Scene(clearLayout, 250, 250);
+		clear.getStylesheets().add("style.css");
 		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Clear Registry", 250);
@@ -418,8 +486,10 @@ public class UI {
 		// Clear File
 		Label clearLabel = new Label(), clearStatus = new Label();
 		clearLabel.setText("Clear Item Registry. This CANNOT be Undone!");
-		ChoiceBox<String> YN = new ChoiceBox<>();
+		ComboBox<String> YN;
+		YN = new ComboBox<>();
 		YN.getItems().addAll("Yes I want to wipe the Registry", "No this was a mistake");
+		YN.setPromptText("Wipe the Registry?");
 		Button delete = new Button("Continue");
 		Button clearBack = new Button("Back");
 		clearBack.setOnAction(e -> {
@@ -448,8 +518,11 @@ public class UI {
 	// Executive Options
 	public static void executive(String file, String passFile) {
 		Stage window = new Stage();
-		VBox passCheckLayout = new VBox(10), optionsLayout = new VBox(10);
+		VBox passCheckLayout = new VBox(10), optionsMenu = new VBox(10);
+		BorderPane optionsLayout = new BorderPane();
 		Scene passCheck = new Scene(passCheckLayout, 250, 250), options = new Scene(optionsLayout, 350, 350);
+		options.getStylesheets().add("style.css");
+		passCheck.getStylesheets().add("style.css");
 		csvFileReader read = new csvFileReader();
 
 		UIManager.windowBasic(window, "Executive Options", 250);
@@ -458,22 +531,28 @@ public class UI {
 		Label label = new Label();
 		label.setText("Executive Options");
 		errors.setText("");
-
-		// Change Password
-		Label changeLabel = new Label();
-		changeLabel.setText("Change the Executive Options Password");
+		
+		//Other Options Menu
+		Menu legacy = new Menu("_Legacy");
+		MenuBar menu = new MenuBar();
+		MenuItem register = new MenuItem("Register");
+		MenuItem remove = new MenuItem("Remove");
+		MenuItem show = new MenuItem("Show Status");
+		legacy.getItems().add(register);
+		legacy.getItems().add(remove);
+		legacy.getItems().add(show);
+		menu.getMenus().addAll(legacy);
 
 		// Options
-		Button reg = new Button("Register Item");
-		reg.setOnAction(e -> register(file));
-		Button rem = new Button("Remove Item");
-		rem.setOnAction(e -> remove(file));
+		register.setOnAction(e -> register(file));
+		remove.setOnAction(e -> remove(file));
+		show.setOnAction(e -> show(file));
+		Button fle = new Button("Item Manager");
+		fle.setOnAction(e -> registry(file));
 		Button clr = new Button("Clear Item Registry");
 		clr.setOnAction(e -> clear(file));
 		Button chn = new Button("Change Executive Password");
 		chn.setOnAction(e -> changePass(file, passFile));
-		Button fle = new Button("Check File Registry");
-		fle.setOnAction(e -> registry(file));
 
 		// Password
 		String pass = (read.getItem(1000, passFile)).getName();
@@ -511,8 +590,10 @@ public class UI {
 		passCheckLayout.getChildren().addAll(label, errors, password, login);
 		passCheckLayout.setAlignment(Pos.CENTER);
 
-		optionsLayout.getChildren().addAll(label, reg, rem, clr, chn, fle);
-		optionsLayout.setAlignment(Pos.CENTER);
+		optionsLayout.setTop(menu);
+		optionsMenu.getChildren().addAll(label, fle, clr, chn);
+		optionsMenu.setAlignment(Pos.CENTER);
+		optionsLayout.setCenter(optionsMenu);
 
 		// Display window and wait for it to be closed before returning
 		window.setScene(passCheck);

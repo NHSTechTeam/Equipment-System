@@ -32,7 +32,7 @@ public class Runner extends Application {
 		window.setTitle("Equipment Manager");
 		checkout = new Button("Checkout");
 		checkin = new Button("CheckIn");
-		show = new Button("Show Item Status");
+		show = new Button("Show Inventory");
 		executive = new Button("Executive Options");
 
 		// create filenames
@@ -55,13 +55,14 @@ public class Runner extends Application {
 
 		checkout.setOnAction(e -> UI.checkout(fileName, IDFileName));
 		checkin.setOnAction(e -> UI.checkin(fileName));
-		show.setOnAction(e -> UI.show(fileName));
+		show.setOnAction(e -> UI.inventory(fileName));
 		executive.setOnAction(e -> UI.executive(fileName, passFileName));
 
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(checkout, checkin, show, executive);
 		layout.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(layout, 300, 250);
+		scene.getStylesheets().add("style.css");
 		window.setScene(scene);
 		window.show();
 	}
