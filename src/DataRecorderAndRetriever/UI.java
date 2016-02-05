@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
  */
 
 public class UI {
-	
+
 	static ItemManager manage = new ItemManager();
 	static Label errors = new Label();
 
@@ -43,10 +43,11 @@ public class UI {
 		button.setOnAction(e -> {
 			errors.setText("");
 			if (UIManager.isInt(itemInput, itemInput.getText()) && UIManager.isInt(IDInput, IDInput.getText())) {
-					manage.checkOut(Integer.parseInt(itemInput.getText()), file, IDfile, Integer.parseInt(IDInput.getText()));
-					itemInput.clear();
-					IDInput.clear();
-					window.close();
+				manage.checkOut(Integer.parseInt(itemInput.getText()), file, IDfile,
+						Integer.parseInt(IDInput.getText()));
+				itemInput.clear();
+				IDInput.clear();
+				window.close();
 			} else {
 				errors.setText("Something Went Wrong. Try Again");
 				itemInput.clear();
@@ -189,7 +190,7 @@ public class UI {
 		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		
+
 		// Permission column
 		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
 		permColumn.setMinWidth(150);
@@ -214,7 +215,7 @@ public class UI {
 		window.setScene(inventory);
 		window.showAndWait();
 	}
-	
+
 	// Register Item
 	public static void register(String file) {
 		Stage window = new Stage();
@@ -243,7 +244,8 @@ public class UI {
 		RegisterSubmit.setOnAction(e -> {
 			errors.setText("");
 			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
-				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), Boolean.parseBoolean(executiveAP.getValue()), file);
+				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(),
+						Boolean.parseBoolean(executiveAP.getValue()), file);
 				RegitemID.clear();
 				itemName.clear();
 				window.close();
@@ -254,7 +256,8 @@ public class UI {
 			}
 		});
 
-		registerLayout.getChildren().addAll(label, errors, RegitemID, itemName, executiveAP, RegisterSubmit, registerBack);
+		registerLayout.getChildren().addAll(label, errors, RegitemID, itemName, executiveAP, RegisterSubmit,
+				registerBack);
 		registerLayout.setAlignment(Pos.CENTER);
 
 		// Display window and wait for it to be closed before returning
@@ -342,12 +345,12 @@ public class UI {
 		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		
+
 		// Permission column
 		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
 		permColumn.setMinWidth(150);
 		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
-		
+
 		// Name input
 		TextField itemName = new TextField();
 		itemName.setPromptText("Item Name");
@@ -359,27 +362,28 @@ public class UI {
 		RegitemID.setPromptText("ID Number");
 		RegitemID.setMinWidth(75);
 		RegitemID.setMaxWidth(125);
-		
+
 		ComboBox<String> executiveAP;
 		executiveAP = new ComboBox<>();
 		executiveAP.getItems().addAll("True", "False");
 		executiveAP.setPromptText("Executive Approval");
-        
+
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(file));
 		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn, permColumn);
-		
+
 		Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(e -> {
-        	UIManager.deleteButtonClicked(table, file);
-        });
-		
-		//Button
-        Button addButton = new Button("Add");
-        addButton.setOnAction(e -> {
+		deleteButton.setOnAction(e -> {
+			UIManager.deleteButtonClicked(table, file);
+		});
+
+		// Button
+		Button addButton = new Button("Add");
+		addButton.setOnAction(e -> {
 			errors.setText("");
 			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
-				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), Boolean.parseBoolean(executiveAP.getValue()), file);
+				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(),
+						Boolean.parseBoolean(executiveAP.getValue()), file);
 				RegitemID.clear();
 				itemName.clear();
 				table.setItems(UIManager.getItems(file));
@@ -391,12 +395,12 @@ public class UI {
 			}
 		});
 
-        HBox menu = new HBox();
+		HBox menu = new HBox();
 		menu.setPadding(new Insets(10, 10, 10, 10));
 		menu.setSpacing(10);
 		menu.setAlignment(Pos.CENTER);
 		menu.getChildren().addAll(RegitemID, itemName, executiveAP, addButton, deleteButton);
-        
+
 		// Back Button
 		Button fileBack = new Button("Back");
 		fileBack.setOnAction(e -> {
@@ -508,7 +512,7 @@ public class UI {
 		Label label = new Label();
 
 		UIManager.windowBasic(window, "Executive Options", 250, label, errors);
-		
+
 		// Other Options Menu
 		Menu legacy = new Menu("_Legacy");
 		MenuBar menu = new MenuBar();
