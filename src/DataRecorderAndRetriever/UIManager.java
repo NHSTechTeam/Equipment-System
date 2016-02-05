@@ -3,6 +3,7 @@ package DataRecorderAndRetriever;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -17,12 +18,14 @@ import javafx.stage.Stage;
 public class UIManager {
 	
 	//Basic Window Functions
-	public static void windowBasic(Stage window, String title, int size) {
+	public static void windowBasic(Stage window, String title, int size, Label label, Label errors) {
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
 		window.setMinWidth(size);
 		window.setMinHeight(size);
 		window.setOnCloseRequest(e -> window.close());
+		label.setText(title);
+		errors.setText("");
 	}
 	
 	// Is-Integer Check

@@ -2,7 +2,7 @@ package DataRecorderAndRetriever;
 
 /**
  * 
- * @author James
+ * @author James & Devin
  *
  */
 

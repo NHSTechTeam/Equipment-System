@@ -30,12 +30,9 @@ public class UI {
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
 		checkout.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Equipment Checkout", 250);
-
 		Label label = new Label();
-		label.setText("Equipment Checkout");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
 
 		TextField itemInput = new TextField();
 		itemInput.setPromptText("Item Barcode");
@@ -71,12 +68,9 @@ public class UI {
 		VBox checkinLayout = new VBox(10);
 		Scene checkin = new Scene(checkinLayout);
 		checkin.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Equipment Checkin", 250);
-
 		Label label = new Label();
-		label.setText("Equipment Checkin");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors);
 
 		TextField itemInput = new TextField();
 		itemInput.setPromptText("Item Barcode");
@@ -109,12 +103,9 @@ public class UI {
 		Scene show = new Scene(showLayout, 250, 250), show2 = new Scene(show2Layout, 500, 150);
 		show.getStylesheets().add("style.css");
 		show2.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Equipment Status", 250);
-
 		Label label = new Label();
-		label.setText("Equipment Status");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Equipment Status", 250, label, errors);
 
 		// Show Item Status
 		Label showStatus = new Label();
@@ -175,12 +166,9 @@ public class UI {
 		Scene inventory = new Scene(inventoryLayout, 250, 250);
 		inventory.getStylesheets().add("style.css");
 		TableView<Item> table;
-
-		UIManager.windowBasic(window, "Inventory View", 750);
-
 		Label label = new Label();
-		label.setText("Inventory Viewer");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Inventory View", 750, label, errors);
 
 		// reference column
 		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
@@ -233,12 +221,9 @@ public class UI {
 		VBox registerLayout = new VBox(10);
 		Scene register = new Scene(registerLayout, 250, 250);
 		register.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Register Item", 250);
-
 		Label label = new Label();
-		label.setText("Register an Item");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Register Item", 250, label, errors);
 
 		// Register
 		TextField itemName = new TextField();
@@ -283,12 +268,9 @@ public class UI {
 		VBox removeLayout = new VBox(10);
 		Scene remove = new Scene(removeLayout, 250, 250);
 		remove.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Remove Item", 250);
-
 		Label label = new Label();
-		label.setText("Remove Item from Registry");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Remove Item", 250, label, errors);
 
 		// Remove
 		TextField RemitemID = new TextField();
@@ -337,12 +319,9 @@ public class UI {
 		Scene registry = new Scene(registryLayout, 250, 250);
 		registry.getStylesheets().add("style.css");
 		TableView<Item> table;
-
-		UIManager.windowBasic(window, "Item Manager", 750);
-
 		Label label = new Label();
-		label.setText("Inventory Manager");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Item Manager", 750, label, errors);
 
 		// reference column
 		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
@@ -441,12 +420,10 @@ public class UI {
 		Scene change = new Scene(changeLayout, 250, 250);
 		change.getStylesheets().add("style.css");
 		csvFileWriter write = new csvFileWriter();
-
-		UIManager.windowBasic(window, "Change Password", 250);
-
 		Label label = new Label();
-		label.setText("Change Password");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Change Password", 250, label, errors);
+
 		TextField oldPass = new TextField();
 		oldPass.setPromptText("Current Password");
 		TextField newPass = new TextField();
@@ -483,12 +460,9 @@ public class UI {
 		VBox clearLayout = new VBox(10);
 		Scene clear = new Scene(clearLayout, 250, 250);
 		clear.getStylesheets().add("style.css");
-
-		UIManager.windowBasic(window, "Clear Registry", 250);
-
 		Label label = new Label();
-		label.setText("Clear Registry");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Clear Registry", 250, label, errors);
 
 		// Clear File
 		Label clearLabel = new Label(), clearStatus = new Label();
@@ -531,13 +505,9 @@ public class UI {
 		options.getStylesheets().add("style.css");
 		passCheck.getStylesheets().add("style.css");
 		csvFileReader read = new csvFileReader();
-
-		UIManager.windowBasic(window, "Executive Options", 250);
-
-		// Universal Items
 		Label label = new Label();
-		label.setText("Executive Options");
-		errors.setText("");
+
+		UIManager.windowBasic(window, "Executive Options", 250, label, errors);
 		
 		// Other Options Menu
 		Menu legacy = new Menu("_Legacy");
