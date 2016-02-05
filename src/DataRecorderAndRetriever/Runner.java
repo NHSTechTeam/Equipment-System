@@ -37,7 +37,7 @@ public class Runner extends Application {
 
 		// create filenames
 		String fileName = System.getProperty("user.home") + "/item.csv";
-		String passFileName = System.getProperty("user.home") + "/sneakingprecious.csv";
+		String passFileName = System.getProperty("user.home") + "/notoflookinghere.csv";
 		String IDFileName = System.getProperty("user.home") + "/memberlist.csv";
 		File x = new File(fileName);
 		// if no file exists with given names, create default files
@@ -46,7 +46,7 @@ public class Runner extends Application {
 			write.writeCsvFile(fileName);
 			write.writeCsvFile(IDFileName);
 			ArrayList<Item> list = new ArrayList<Item>();
-			list.add(new Item(1000, "password", true, "none"));
+			list.add(new Item(1000, "password", true, "none", false));
 			write.enterData(list);
 			write.writeCsvFile(passFileName);
 		} else {

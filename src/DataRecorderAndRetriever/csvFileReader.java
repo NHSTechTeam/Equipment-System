@@ -2,7 +2,7 @@ package DataRecorderAndRetriever;
 
 /**
  * 
- * @author James & Devin
+ * @author James
  *
  */
 
@@ -25,6 +25,7 @@ public class csvFileReader {
 	private static final int ITEM_NAME_IDX = 1;
 	private static final int ITEM_AVAIL_IDX = 2;
 	private static final int ITEM_ID_IDX = 3;
+	private static final int ITEM_PERMISSION_IDX = 4;
 
 	// print entire file
 	public String printFile(String fileName) {
@@ -122,8 +123,12 @@ public class csvFileReader {
 				// resulted in multiple strings
 				if (tokens.length > 0) {
 					// create item
-					Item read = new Item(Integer.parseInt(tokens[ITEM_REF_IDX]), tokens[ITEM_NAME_IDX],
-							Boolean.parseBoolean(tokens[ITEM_AVAIL_IDX]), (tokens[ITEM_ID_IDX]));
+					Item read = new Item(
+							Integer.parseInt(tokens[ITEM_REF_IDX]),
+							tokens[ITEM_NAME_IDX],
+							Boolean.parseBoolean(tokens[ITEM_AVAIL_IDX]),
+							(tokens[ITEM_ID_IDX]),
+							Boolean.parseBoolean(tokens[ITEM_PERMISSION_IDX]));
 					// add item to arraylist
 					items.add(read);
 				}
@@ -175,13 +180,17 @@ public class csvFileReader {
 					// check if the information correlates to the correct item
 					if (Integer.parseInt(tokens[ITEM_REF_IDX]) == ref) {
 						// create item
-						read = new Item(Integer.parseInt(tokens[ITEM_REF_IDX]), tokens[ITEM_NAME_IDX],
-								Boolean.parseBoolean(tokens[ITEM_AVAIL_IDX]), (tokens[ITEM_ID_IDX]));
+						read = new Item(
+								Integer.parseInt(tokens[ITEM_REF_IDX]),
+								tokens[ITEM_NAME_IDX],
+								Boolean.parseBoolean(tokens[ITEM_AVAIL_IDX]),
+								(tokens[ITEM_ID_IDX]),
+								(Boolean.parseBoolean(tokens[ITEM_PERMISSION_IDX])));
 						System.out.println("File Read Successfully");
 						return read;
 					} else {
 						// create item to be returned if the item is not indexed
-						read = new Item(ref, "ITEM NOT RECORDED", false, "none");
+						read = new Item(ref, "ITEM NOT RECORDED", false, "none",false);
 					}
 				}
 			}
@@ -192,7 +201,7 @@ public class csvFileReader {
 
 			// output error information
 			System.out.println("Error");
-			Item read = new Item(0, "error", false, "none");
+			Item read = new Item(0, "error", false, "none",false);
 			e.printStackTrace();
 			return read;
 		} finally {

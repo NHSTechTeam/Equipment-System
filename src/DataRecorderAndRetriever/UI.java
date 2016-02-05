@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
  */
 
 public class UI {
+	
+	static ItemManager manage = new ItemManager();
 	static Label errors = new Label();
 
 	// Check Out
@@ -28,7 +30,6 @@ public class UI {
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
 		checkout.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Checkout", 250);
 
@@ -45,11 +46,10 @@ public class UI {
 		button.setOnAction(e -> {
 			errors.setText("");
 			if (UIManager.isInt(itemInput, itemInput.getText()) && UIManager.isInt(IDInput, IDInput.getText())) {
-				manage.checkOut(Integer.parseInt(itemInput.getText()), file, IDfile,
-						Integer.parseInt(IDInput.getText()));
-				itemInput.clear();
-				IDInput.clear();
-				window.close();
+					manage.checkOut(Integer.parseInt(itemInput.getText()), file, IDfile, Integer.parseInt(IDInput.getText()));
+					itemInput.clear();
+					IDInput.clear();
+					window.close();
 			} else {
 				errors.setText("Something Went Wrong. Try Again");
 				itemInput.clear();
@@ -71,7 +71,6 @@ public class UI {
 		VBox checkinLayout = new VBox(10);
 		Scene checkin = new Scene(checkinLayout);
 		checkin.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Checkin", 250);
 
@@ -110,7 +109,6 @@ public class UI {
 		Scene show = new Scene(showLayout, 250, 250), show2 = new Scene(show2Layout, 500, 150);
 		show.getStylesheets().add("style.css");
 		show2.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Equipment Status", 250);
 
@@ -176,7 +174,6 @@ public class UI {
 		VBox inventoryLayout = new VBox(10);
 		Scene inventory = new Scene(inventoryLayout, 250, 250);
 		inventory.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 		TableView<Item> table;
 
 		UIManager.windowBasic(window, "Inventory View", 750);
@@ -204,10 +201,15 @@ public class UI {
 		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		
+		// Permission column
+		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
+		permColumn.setMinWidth(150);
+		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(file));
-		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn);
+		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn, permColumn);
 
 		// Back Button
 		Button fileBack = new Button("Back");
@@ -231,7 +233,6 @@ public class UI {
 		VBox registerLayout = new VBox(10);
 		Scene register = new Scene(registerLayout, 250, 250);
 		register.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Register Item", 250);
 
@@ -246,6 +247,10 @@ public class UI {
 		RegitemID.setPromptText("Item ID");
 		Button RegisterSubmit = new Button("Submit");
 		Button registerBack = new Button("Back");
+		ComboBox<String> executiveAP;
+		executiveAP = new ComboBox<>();
+		executiveAP.getItems().addAll("True", "False");
+		executiveAP.setPromptText("Executive Approval");
 		registerBack.setOnAction(e -> {
 			errors.setText("");
 			window.close();
@@ -253,7 +258,7 @@ public class UI {
 		RegisterSubmit.setOnAction(e -> {
 			errors.setText("");
 			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
-				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), file);
+				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), Boolean.parseBoolean(executiveAP.getValue()), file);
 				RegitemID.clear();
 				itemName.clear();
 				window.close();
@@ -264,7 +269,7 @@ public class UI {
 			}
 		});
 
-		registerLayout.getChildren().addAll(label, errors, RegitemID, itemName, RegisterSubmit, registerBack);
+		registerLayout.getChildren().addAll(label, errors, RegitemID, itemName, executiveAP, RegisterSubmit, registerBack);
 		registerLayout.setAlignment(Pos.CENTER);
 
 		// Display window and wait for it to be closed before returning
@@ -278,7 +283,6 @@ public class UI {
 		VBox removeLayout = new VBox(10);
 		Scene remove = new Scene(removeLayout, 250, 250);
 		remove.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Remove Item", 250);
 
@@ -332,7 +336,6 @@ public class UI {
 		VBox registryLayout = new VBox(10);
 		Scene registry = new Scene(registryLayout, 250, 250);
 		registry.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 		TableView<Item> table;
 
 		UIManager.windowBasic(window, "Item Manager", 750);
@@ -361,6 +364,11 @@ public class UI {
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
 		
+		// Permission column
+		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
+		permColumn.setMinWidth(150);
+		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
+		
 		// Name input
 		TextField itemName = new TextField();
 		itemName.setPromptText("Item Name");
@@ -380,7 +388,7 @@ public class UI {
         
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(file));
-		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn);
+		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn, permColumn);
 		
 		Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(e -> {
@@ -392,7 +400,7 @@ public class UI {
         addButton.setOnAction(e -> {
 			errors.setText("");
 			if ((UIManager.isInt(RegitemID, RegitemID.getText())) && !(itemName.equals(""))) {
-				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), file);
+				manage.register(new Scanner(RegitemID.getText()).nextInt(), itemName.getText(), Boolean.parseBoolean(executiveAP.getValue()), file);
 				RegitemID.clear();
 				itemName.clear();
 				table.setItems(UIManager.getItems(file));
@@ -475,7 +483,6 @@ public class UI {
 		VBox clearLayout = new VBox(10);
 		Scene clear = new Scene(clearLayout, 250, 250);
 		clear.getStylesheets().add("style.css");
-		ItemManager manage = new ItemManager();
 
 		UIManager.windowBasic(window, "Clear Registry", 250);
 
@@ -532,7 +539,7 @@ public class UI {
 		label.setText("Executive Options");
 		errors.setText("");
 		
-		//Other Options Menu
+		// Other Options Menu
 		Menu legacy = new Menu("_Legacy");
 		MenuBar menu = new MenuBar();
 		MenuItem register = new MenuItem("Register");
