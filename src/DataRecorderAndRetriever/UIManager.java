@@ -17,7 +17,22 @@ import javafx.stage.Stage;
 
 public class UIManager {
 
-	// Basic Window Functions
+	/**
+	 * Window Basic is what sets up all the basic parameters of a UI window, and
+	 * off-loads the code to another class to save you space in the class you
+	 * store your windows.
+	 * 
+	 * @param window
+	 *            Your window Stage. To help off-load any basic functions
+	 * @param title
+	 *            The title of the window and main label
+	 * @param size
+	 *            The minimum width and height of the window
+	 * @param label
+	 *            The main label for your window
+	 * @param errors
+	 *            Your error label. Sets the initial value to "" for you
+	 */
 	public static void windowBasic(Stage window, String title, int size, Label label, Label errors) {
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle(title);
