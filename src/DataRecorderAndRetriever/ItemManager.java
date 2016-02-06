@@ -4,23 +4,34 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author James & Devin
- *
+ * @author James Sonne & Devin Matte
+ * @version v0.3-Alpha
+ * @since 2016-02-06
  */
 
 public class ItemManager {
 
-	// check out an item
+	/**
+	 * Checkout an Item
+	 * 
+	 * @param ref
+	 * @param fileName
+	 * @param passFile
+	 * @param member
+	 * @param ID
+	 * @param Pass
+	 * @return
+	 */
 	public boolean checkOut(int ref, String fileName, String passFile, String member, int ID, String Pass) {
-		
+
 		// create reader and writer
 		csvFileReader read = new csvFileReader();
 		csvFileWriter write = new csvFileWriter();
-		
-		//get member name
-		Item item1 = read.getItem(ID,member);
+
+		// get member name
+		Item item1 = read.getItem(ID, member);
 		String name = item1.getName();
-		
+
 		// find items position in list
 		int pos = read.checkPosition(ref, fileName);
 		System.out.println(pos);
@@ -29,35 +40,43 @@ public class ItemManager {
 		ArrayList<Item> items = read.getData(fileName);
 		// check for permission
 		String pass = (read.getItem(1000, passFile)).getName();
-		if (((items.get(pos).getPermission() != true) && (Pass == "")) || (Pass.equals(pass))){
-		
-		// checkout item
-		(items.get(pos)).checkOut(name);
+		if (((items.get(pos).getPermission() != true) && (Pass == "")) || (Pass.equals(pass))) {
 
-		// rewrite file
-		write.enterData(items);
-		write.writeCsvFile(fileName);
-		return true;
-		}
-		else{
+			// checkout item
+			(items.get(pos)).checkOut(name);
+
+			// rewrite file
+			write.enterData(items);
+			write.writeCsvFile(fileName);
+			return true;
+		} else {
 			System.out.println("Password Incorrect");
 			return false;
 		}
 	}
-	
-	//erase a file
-	public void clearFile(String fileName){
+
+	/**
+	 * Erase a file entirely
+	 * 
+	 * @param fileName
+	 */
+	public void clearFile(String fileName) {
 		csvFileWriter write = new csvFileWriter();
 		ArrayList<Item> list = new ArrayList<Item>();
-		
-		//enter empy data
+
+		// enter empy data
 		write.enterData(list);
-		
-		//rewrite file with no data
+
+		// rewrite file with no data
 		write.writeCsvFile(fileName);
 	}
 
-	// check in an item
+	/**
+	 * Check back in an item that was checked out
+	 * 
+	 * @param ref
+	 * @param fileName
+	 */
 	public void checkIn(int ref, String fileName) {
 		// create reader and writer
 		csvFileReader read = new csvFileReader();
@@ -77,10 +96,17 @@ public class ItemManager {
 		write.writeCsvFile(fileName);
 	}
 
-	// register an Item
-	public void register(int ref,String name,boolean permission, String fileName) {
+	/**
+	 * Register an Item into the system
+	 * 
+	 * @param ref
+	 * @param name
+	 * @param permission
+	 * @param fileName
+	 */
+	public void register(int ref, String name, boolean permission, String fileName) {
 		// create reader and writer
-		Item item = new Item(ref,name,true,"none",permission);
+		Item item = new Item(ref, name, true, "none", permission);
 		csvFileReader read = new csvFileReader();
 		csvFileWriter write = new csvFileWriter();
 
@@ -101,7 +127,12 @@ public class ItemManager {
 		write.writeCsvFile(fileName);
 	}
 
-	// remove an Item
+	/**
+	 * Remove an item from the Registry
+	 * 
+	 * @param ref
+	 * @param fileName
+	 */
 	public void remove(int ref, String fileName) {
 		// create reader and writer
 		csvFileReader read = new csvFileReader();
@@ -109,71 +140,95 @@ public class ItemManager {
 
 		// create array
 		ArrayList<Item> items = read.getData(fileName);
-		
-		//get position
-		int pos = read.checkPosition((read.getItem(ref, fileName)).getReference(),fileName);
-		
-		//remove item
+
+		// get position
+		int pos = read.checkPosition((read.getItem(ref, fileName)).getReference(), fileName);
+
+		// remove item
 		items.remove(pos);
-		
-		//rewrite file
+
+		// rewrite file
 		write.enterData(items);
 		write.writeCsvFile(fileName);
 	}
-	//return an item
-	public Item getItem(int ref, String fileName){
-		//get item through reader
+
+	/**
+	 * Returns an item when called
+	 * 
+	 * @param ref
+	 * @param fileName
+	 * @return
+	 */
+	public Item getItem(int ref, String fileName) {
+		// get item through reader
 		csvFileReader read = new csvFileReader();
 		return read.getItem(ref, fileName);
 	}
-	
-	//print csv file
-	public String printFile(String fileName){
+
+	/**
+	 * Prints out the values of the csv file
+	 * 
+	 * @param fileName
+	 * @return
+	 */
+	public String printFile(String fileName) {
 		csvFileReader read = new csvFileReader();
 		return read.printFile(fileName);
 	}
-	
-	//print an arraylist nicely
-	public void printList(ArrayList<Item> list){
-		for (int i = 0; i < list.size(); i ++){
+
+	/**
+	 * Prints an ArrayList nicely for easy viewing
+	 * 
+	 * @param list
+	 */
+	public void printList(ArrayList<Item> list) {
+		for (int i = 0; i < list.size(); i++) {
 			System.out.println("\n" + list.get(i).toString());
 		}
 	}
 
-	//search for an item
-	public ArrayList<Item> searchFor(String fileName, String search){
-		//create reader
+	/**
+	 * Allows for items to be searched for within the ArrayList and returns only
+	 * the items the fit with the values searched for.
+	 * 
+	 * @param fileName
+	 * @param search
+	 * @return
+	 */
+	public ArrayList<Item> searchFor(String fileName, String search) {
+		// create reader
 		csvFileReader read = new csvFileReader();
-		
-		//create arraylists
+
+		// create arraylists
 		ArrayList<String> keyword = new ArrayList<String>();
 		ArrayList<Item> info = read.getData(fileName);
 		ArrayList<Item> returned = new ArrayList<Item>();
-		
-		//add the whole string as a keyword, covers for one word searches
+
+		// add the whole string as a keyword, covers for one word searches
 		keyword.add(search);
-		
-		//add each word entered into the search as a separate keyword
-		while (search.indexOf(' ') != -1){
-		keyword.add(search.substring(0,search.indexOf(' ')));
-		search = search.substring(search.indexOf(' ')+1);
+
+		// add each word entered into the search as a separate keyword
+		while (search.indexOf(' ') != -1) {
+			keyword.add(search.substring(0, search.indexOf(' ')));
+			search = search.substring(search.indexOf(' ') + 1);
 		}
-		
-		//add the remaining word
+
+		// add the remaining word
 		keyword.add(search);
-		
-		//check if each item name contains each keyword
-		for (int i = 0; i < info.size(); i ++){
-			for (int e = 0; e < keyword.size(); e ++){
-				if (info.get(i).getName().toLowerCase().contains(keyword.get(e).toLowerCase())){
+
+		// check if each item name contains each keyword
+		for (int i = 0; i < info.size(); i++) {
+			for (int e = 0; e < keyword.size(); e++) {
+				if (info.get(i).getName().toLowerCase().contains(keyword.get(e).toLowerCase())) {
 					returned.add(info.get(i));
-					//prevent items from being added twice for containing two keywords
+					// prevent items from being added twice for containing two
+					// keywords
 					break;
 				}
 			}
 		}
-		//return list of items
+		// return list of items
 		return returned;
-		
+
 	}
 }

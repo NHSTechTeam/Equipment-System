@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author James & Devin
- *
+ * @author James Sonne & Devin Matte
+ * @version v0.3-Alpha
+ * @since 2016-02-06
  */
 
 public class csvFileWriter {

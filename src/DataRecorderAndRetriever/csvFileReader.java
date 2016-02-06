@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author James & Devin
- *
+ * @author James Sonne & Devin Matte
+ * @version v0.3-Alpha
+ * @since 2016-02-06
  */
 
 public class csvFileReader {
@@ -21,7 +22,11 @@ public class csvFileReader {
 	private static final int ITEM_ID_IDX = 3;
 	private static final int ITEM_PERMISSION_IDX = 4;
 
-	// print entire file
+	/**
+	 * Print entire file
+	 * @param fileName
+	 * @return
+	 */
 	public String printFile(String fileName) {
 		// create reader and strings
 		BufferedReader fileReader = null;
