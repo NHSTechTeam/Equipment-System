@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 public class UI {
 	static ItemManager manage = new ItemManager();
 	static Label errors = new Label();
-	static int checkoutItemInput;
+	static int checkoutItemInput, checkoutIDInput;
 
 	/**
 	 * Checkout Window
@@ -26,7 +26,7 @@ public class UI {
 	 * @param IDfile
 	 *            Links the Memberlist File
 	 */
-	public static void checkout(String file, String IDfile) {
+	public static void checkout(String file, String IDfile, String passfile) {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
@@ -44,7 +44,7 @@ public class UI {
 			if (UIManager.isInt(itemInput, itemInput.getText())) {
 				checkoutItemInput = Integer.parseInt(itemInput.getText());
 				itemInput.clear();
-				checkoutID(file, IDfile);
+				checkoutID(file, IDfile, passfile);
 				window.close();
 			} else {
 				errors.setText("Something Went Wrong. Try Again");
@@ -57,7 +57,7 @@ public class UI {
 				if (UIManager.isInt(itemInput, itemInput.getText())) {
 					checkoutItemInput = Integer.parseInt(itemInput.getText());
 					itemInput.clear();
-					checkoutID(file, IDfile);
+					checkoutID(file, IDfile, passfile);
 					window.close();
 				} else {
 					errors.setText("Something Went Wrong. Try Again");
@@ -82,7 +82,7 @@ public class UI {
 	 * @param IDfile
 	 *            Links the Memberlist File
 	 */
-	public static void checkoutID(String file, String IDfile) {
+	public static void checkoutID(String file, String IDfile, String passfile) {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
@@ -98,9 +98,14 @@ public class UI {
 		button.setOnAction(e -> {
 			errors.setText("");
 			if (UIManager.isInt(IDInput, IDInput.getText())) {
-				manage.checkOut(checkoutItemInput, file, IDfile, Integer.parseInt(IDInput.getText()));
-				IDInput.clear();
-				window.close();
+				checkoutIDInput = Integer.parseInt(IDInput.getText());
+				if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")) {
+					IDInput.clear();
+					window.close();
+				} else {
+					checkoutConfirm(file, IDfile, passfile);
+					window.close();
+				}
 			} else {
 				errors.setText("Something Went Wrong. Try Again");
 				IDInput.clear();
@@ -110,9 +115,14 @@ public class UI {
 			if (e.getCode().equals(KeyCode.ENTER)) {
 				errors.setText("");
 				if (UIManager.isInt(IDInput, IDInput.getText())) {
-					manage.checkOut(checkoutItemInput, file, IDfile, Integer.parseInt(IDInput.getText()));
-					IDInput.clear();
-					window.close();
+					checkoutIDInput = Integer.parseInt(IDInput.getText());
+					if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")) {
+						IDInput.clear();
+						window.close();
+					} else {
+						checkoutConfirm(file, IDfile, passfile);
+						window.close();
+					}
 				} else {
 					errors.setText("Something Went Wrong. Try Again");
 					IDInput.clear();
@@ -121,6 +131,57 @@ public class UI {
 		});
 
 		checkoutLayout.getChildren().addAll(label, errors, IDInput, button);
+		checkoutLayout.setAlignment(Pos.CENTER);
+
+		// Display window and wait for it to be closed before returning
+		window.setScene(checkout);
+		window.showAndWait();
+	}
+
+	public static void checkoutConfirm(String file, String IDfile, String passfile) {
+		Stage window = new Stage();
+		VBox checkoutLayout = new VBox(10);
+		Scene checkout = new Scene(checkoutLayout);
+		checkout.getStylesheets().add("style.css");
+		Label label = new Label();
+		csvFileReader read = new csvFileReader();
+
+		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
+
+		TextField passInput = new TextField();
+		passInput.setPromptText("Password");
+		String pass = (read.getItem(1000, passfile)).getName();
+
+		Button button = new Button("Check Out");
+		button.setOnAction(e -> {
+			errors.setText("");
+			if (pass.equals(passInput.getText())) {
+				if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, passInput.getText())) {
+					window.close();
+					passInput.clear();
+				}
+			} else {
+				errors.setText("Something Went Wrong. Try Again");
+				passInput.clear();
+			}
+		});
+		passInput.setOnKeyPressed(e -> {
+			if (e.getCode().equals(KeyCode.ENTER)) {
+				errors.setText("");
+				if (pass.equals(passInput.getText())) {
+					if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
+							passInput.getText())) {
+						passInput.clear();
+						window.close();
+					}
+				} else {
+					errors.setText("Something Went Wrong. Try Again");
+					passInput.clear();
+				}
+			}
+		});
+
+		checkoutLayout.getChildren().addAll(label, errors, passInput, button);
 		checkoutLayout.setAlignment(Pos.CENTER);
 
 		// Display window and wait for it to be closed before returning

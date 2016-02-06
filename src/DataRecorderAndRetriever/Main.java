@@ -94,7 +94,7 @@ public class Main extends Application {
 
 		Button checkout = new Button("Checkout");
 		checkout.setOnAction(e -> {
-			UI.checkout(fileName, IDFileName);
+			UI.checkout(fileName, IDFileName, passFileName);
 			table.setItems(UIManager.getItems(fileName, search.getText()));
 		});
 
