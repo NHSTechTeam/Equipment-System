@@ -96,6 +96,15 @@ public class UIManager {
 		return items;
 	}
 
+	/**
+	 * Deletes the selected file from the table. Takes the data in and removes
+	 * it from both the table and the file itself.
+	 * 
+	 * @param table
+	 *            Import the table in which you need to delete an item from.
+	 * @param file
+	 *            Links the main item File
+	 */
 	public static void deleteButtonClicked(TableView<Item> table, String file) {
 		csvFileReader read = new csvFileReader();
 		csvFileWriter write = new csvFileWriter();

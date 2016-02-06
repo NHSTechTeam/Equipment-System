@@ -1,17 +1,16 @@
 package DataRecorderAndRetriever;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  * 
  * @author James & Devin
  *
  */
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class csvFileWriter {
-	// deliminators
 	private static final String COMMA_SEPERATOR = ",";
 	private static final String NEW_LINE = "\n";
 

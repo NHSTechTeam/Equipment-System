@@ -2,7 +2,6 @@ package DataRecorderAndRetriever;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.application.Application;
@@ -15,8 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-//import java.util.ArrayList;
 
 /**
  * 

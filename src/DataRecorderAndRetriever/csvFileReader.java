@@ -1,20 +1,14 @@
 package DataRecorderAndRetriever;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 /**
  * 
  * @author James & Devin
  *
  */
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-
-//import java.io.IOException;
-
-//import java.util.ArrayList;
-
-//import java.util.List;
 
 public class csvFileReader {
 	// Deliminators

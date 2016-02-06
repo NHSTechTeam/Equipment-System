@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -463,7 +464,7 @@ public class UIExecutive {
 		// Password
 		String pass = (read.getItem(1000, passFile)).getName();
 
-		TextField password = new TextField();
+		PasswordField password = new PasswordField();
 		password.setPromptText("Password");
 		Button login = new Button("Login");
 		password.setOnKeyPressed(e -> {

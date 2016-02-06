@@ -148,7 +148,7 @@ public class UI {
 
 		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
 
-		TextField passInput = new TextField();
+		PasswordField passInput = new PasswordField();
 		passInput.setPromptText("Password");
 		String pass = (read.getItem(1000, passfile)).getName();
 
