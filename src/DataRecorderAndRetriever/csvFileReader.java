@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //import java.util.List;
 
 public class csvFileReader {
-	// dEliminators
+	// Deliminators
 	private static final String COMMA_SEPERATOR = ",";
 
 	// index of info

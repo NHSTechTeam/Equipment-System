@@ -43,7 +43,17 @@ public class UIManager {
 		errors.setText("");
 	}
 
-	// Is-Integer Check
+	/**
+	 * Checks to see if the data input is a integer. If it is allows for it to
+	 * be parsed for use.
+	 * 
+	 * @param input
+	 *            Input data input as a TextField
+	 * @param message
+	 *            Input data as a String
+	 * @return Returns either True or False based on whether or not the data is
+	 *         an integer
+	 */
 	public static boolean isInt(TextField input, String message) {
 		try {
 			int ID = Integer.parseInt(input.getText());
@@ -55,13 +65,33 @@ public class UIManager {
 		}
 	}
 
-	// Gets items for Tableview
-	public static ObservableList<Item> getItems(String file) {
+	/**
+	 * Converts the {@link ArrayList} from the {@link csvFileReader} class into
+	 * an {@link ObservableList}
+	 * 
+	 * @param file
+	 *            Links the main item File
+	 * @param Search
+	 *            The search query that will determine what data is returned to
+	 *            the tables
+	 * @return Returns the new ObservableList of Data
+	 */
+	public static ObservableList<Item> getItems(String file, String Search) {
 		ObservableList<Item> items = FXCollections.observableArrayList();
 		csvFileReader read = new csvFileReader();
-		ArrayList<Item> list = read.getData(file);
-		for (int i = 0; i < list.size(); i++) {
-			items.add(list.get(i));
+		ItemManager manage = new ItemManager();
+		if(Search.equals("")){
+			ArrayList<Item> list = read.getData(file);
+			for (int i = 0; i < list.size(); i++) {
+				items.add(list.get(i));
+			}
+		}
+		else
+		{
+			ArrayList<Item> list = manage.searchFor(file, Search);
+			for (int i = 0; i < list.size(); i++) {
+				items.add(list.get(i));
+			}
 		}
 		return items;
 	}
@@ -85,5 +115,4 @@ public class UIManager {
 		write.enterData(items);
 		write.writeCsvFile(file);
 	}
-
 }
