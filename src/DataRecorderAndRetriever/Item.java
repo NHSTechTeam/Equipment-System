@@ -8,7 +8,6 @@ package DataRecorderAndRetriever;
  */
 
 public class Item {
-	// variables
 	private int reference;
 	private String name;
 	private boolean available;
@@ -17,11 +16,18 @@ public class Item {
 
 	/**
 	 * Constructor
+	 * 
 	 * @param reference
+	 *            Reference number of the item
 	 * @param name
+	 *            Name of the item
 	 * @param available
+	 *            Boolean of whether or not the item is available
 	 * @param ID
+	 *            ID of the member who has the item checked out
 	 * @param permission
+	 *            Boolean for whether or not the item needs executive permission
+	 *            in order to be checked out
 	 */
 	public Item(int reference, String name, boolean available, String ID, boolean permission) {
 		this.reference = reference;
@@ -33,6 +39,7 @@ public class Item {
 
 	/**
 	 * Checkout an Item
+	 * 
 	 * @param ID
 	 */
 	public void checkOut(String ID) {
@@ -56,15 +63,26 @@ public class Item {
 		}
 	}
 
-	// getters and setters
+	/**
+	 * Returns Permission
+	 * @return {@link permission}
+	 */
 	public boolean getPermission() {
 		return permission;
 	}
 
+	/**
+	 * Set Permission
+	 * @param permission sets {@link permission}
+	 */
 	public void setPermission(boolean permission) {
 		this.permission = permission;
 	}
 
+	/**
+	 * Returns ID
+	 * @return {@link ID}
+	 */
 	public String getID() {
 		return ID;
 	}
@@ -73,6 +91,10 @@ public class Item {
 		ID = iD;
 	}
 
+	/**
+	 * Returns Reference
+	 * @return {@link reference}
+	 */
 	public int getReference() {
 		return reference;
 	}
@@ -81,6 +103,10 @@ public class Item {
 		this.reference = reference;
 	}
 
+	/**
+	 * Returns Name
+	 * @return {@link name}
+	 */
 	public String getName() {
 		return name;
 	}
@@ -89,6 +115,10 @@ public class Item {
 		this.name = name;
 	}
 
+	/**
+	 * Return Available
+	 * @return {@link available}
+	 */
 	public boolean getAvailable() {
 		return available;
 	}
@@ -97,7 +127,6 @@ public class Item {
 		this.available = available;
 	}
 
-	// toString method
 	public String toString() {
 		String out = "";
 		out += name + " has the reference of " + reference + " and ";
@@ -111,5 +140,4 @@ public class Item {
 		}
 		return out;
 	}
-
 }

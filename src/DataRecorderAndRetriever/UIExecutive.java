@@ -11,10 +11,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -157,34 +155,9 @@ public class UIExecutive {
 		TextField search = new TextField();
 		search.setPromptText("Search");
 
-		UIManager.windowBasic(window, "Item Manager", 750, label, errors);
+		UIManager.windowBasic(window, "Item Manager", 700, label, errors);
 
 		manage.searchFor(file, search.getText());
-		
-		// reference column
-		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
-		referenceColumn.setMinWidth(80);
-		referenceColumn.setCellValueFactory(new PropertyValueFactory<>("reference"));
-
-		// name column
-		TableColumn<Item, Double> nameColumn = new TableColumn<>("Item Name");
-		nameColumn.setMinWidth(250);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-		// available column
-		TableColumn<Item, String> availableColumn = new TableColumn<>("Available");
-		availableColumn.setMinWidth(80);
-		availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
-
-		// ID column
-		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
-		IDColumn.setMinWidth(150);
-		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-
-		// Permission column
-		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
-		permColumn.setMinWidth(150);
-		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
 		// Name input
 		TextField itemName = new TextField();
@@ -201,11 +174,12 @@ public class UIExecutive {
 		ComboBox<String> executiveAP;
 		executiveAP = new ComboBox<>();
 		executiveAP.getItems().addAll("True", "False");
-		executiveAP.setPromptText("Executive Approval");
-
+		executiveAP.setValue("False");
+		
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(file, search.getText()));
-		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn, permColumn);
+		table.setMaxWidth(700);
+		table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn(), UIManager.availableColumn(), UIManager.IDColumn(), UIManager.permColumn());
 
 		Button deleteButton = new Button("Delete");
 		deleteButton.setOnAction(e -> {
@@ -338,15 +312,18 @@ public class UIExecutive {
 		Scene change = new Scene(changeLayout, 250, 250);
 		change.getStylesheets().add("style.css");
 		csvFileWriter write = new csvFileWriter();
-		Label label = new Label();
+		Label label = new Label(), oldpass = new Label(), newpass = new Label(), confirmnewpass = new Label();
 
 		UIManager.windowBasic(window, "Change Password", 250, label, errors);
 
-		TextField oldPass = new TextField();
+		oldpass.setText("Current Password");
+		newpass.setText("New Password");
+		confirmnewpass.setText("Confirm New Password");
+		PasswordField oldPass = new PasswordField();
 		oldPass.setPromptText("Current Password");
-		TextField newPass = new TextField();
+		PasswordField newPass = new PasswordField();
 		newPass.setPromptText("New Password");
-		TextField confirmNewPass = new TextField();
+		PasswordField confirmNewPass = new PasswordField();
 		confirmNewPass.setPromptText("Confirm New Password");
 		Button Submit = new Button("Submit");
 		Button Back = new Button("Back");
@@ -364,7 +341,7 @@ public class UIExecutive {
 			}
 		});
 
-		changeLayout.getChildren().addAll(label, errors, oldPass, newPass, confirmNewPass, Submit, Back);
+		changeLayout.getChildren().addAll(label, errors, oldpass, oldPass, newpass, newPass, confirmnewpass, confirmNewPass, Submit, Back);
 		changeLayout.setAlignment(Pos.CENTER);
 
 		// Display window and wait for it to be closed before returning

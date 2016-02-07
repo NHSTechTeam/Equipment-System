@@ -138,6 +138,13 @@ public class UI {
 		window.showAndWait();
 	}
 
+	/**
+	 * Checkout Confirm. Confirms password on items that require it for checkout
+	 * 
+	 * @param file
+	 * @param IDfile
+	 * @param passfile
+	 */
 	public static void checkoutConfirm(String file, String IDfile, String passfile) {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -81,14 +83,12 @@ public class UIManager {
 		ObservableList<Item> items = FXCollections.observableArrayList();
 		csvFileReader read = new csvFileReader();
 		ItemManager manage = new ItemManager();
-		if(Search.equals("")){
+		if (Search.equals("")) {
 			ArrayList<Item> list = read.getData(file);
 			for (int i = 0; i < list.size(); i++) {
 				items.add(list.get(i));
 			}
-		}
-		else
-		{
+		} else {
 			ArrayList<Item> list = manage.searchFor(file, Search);
 			for (int i = 0; i < list.size(); i++) {
 				items.add(list.get(i));
@@ -124,5 +124,45 @@ public class UIManager {
 		// rewrite file
 		write.enterData(items);
 		write.writeCsvFile(file);
+	}
+
+	public static TableColumn<Item, String> referenceColumn() {
+		// reference column
+		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
+		referenceColumn.setMinWidth(80);
+		referenceColumn.setCellValueFactory(new PropertyValueFactory<>("reference"));
+		return referenceColumn;
+	}
+	
+	public static TableColumn<Item, String> nameColumn() {
+		// name column
+		TableColumn<Item, String> nameColumn = new TableColumn<>("Item Name");
+		nameColumn.setMinWidth(250);
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		return nameColumn;
+	}
+	
+	public static TableColumn<Item, String> availableColumn() {
+		// available column
+		TableColumn<Item, String> availableColumn = new TableColumn<>("Available");
+		availableColumn.setMinWidth(80);
+		availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
+		return availableColumn;
+	}
+	
+	public static TableColumn<Item, String> IDColumn() {
+		// ID column
+		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
+		IDColumn.setMinWidth(150);
+		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		return IDColumn;
+	}
+	
+	public static TableColumn<Item, String> permColumn() {
+		// Permission column
+		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
+		permColumn.setMinWidth(100);
+		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
+		return permColumn;
 	}
 }

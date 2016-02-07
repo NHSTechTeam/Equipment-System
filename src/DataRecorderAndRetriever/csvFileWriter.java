@@ -19,19 +19,31 @@ public class csvFileWriter {
 	private static ArrayList<Item> items = new ArrayList<Item>();
 
 	// file header
-	private static final String FILE_HEADER = "Reference,name,availability,User,permission";
+	private static final String FILE_HEADER = "Reference, name, availability, User, permission";
 
-	// return current data to be written
+	/**
+	 * Gets the data that needs to be written
+	 * 
+	 * @return
+	 */
 	public ArrayList<Item> getData() {
 		return items;
 	}
 
-	// take data to write
+	/**
+	 * Takes data
+	 * 
+	 * @param list
+	 */
 	public void enterData(ArrayList<Item> list) {
-
 		items = list;
 	}
 
+	/**
+	 * Writes data to the csv file
+	 * 
+	 * @param filename
+	 */
 	public void writeCsvFile(String filename) {
 
 		FileWriter fileWriter = null;
@@ -77,7 +89,12 @@ public class csvFileWriter {
 		}
 	}
 
-	// change password
+	/**
+	 * Change Password
+	 * 
+	 * @param pass
+	 * @param fileName
+	 */
 	public void newPass(String pass, String fileName) {
 		// clear data from past changes
 		items.clear();

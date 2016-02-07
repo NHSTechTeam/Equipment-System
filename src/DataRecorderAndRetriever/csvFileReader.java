@@ -24,6 +24,7 @@ public class csvFileReader {
 
 	/**
 	 * Print entire file
+	 * 
 	 * @param fileName
 	 * @return
 	 */
@@ -52,7 +53,13 @@ public class csvFileReader {
 		return out;
 	}
 
-	// check place in list
+	/**
+	 * Check place in list
+	 * 
+	 * @param ref
+	 * @param fileName
+	 * @return
+	 */
 	public int checkPosition(int ref, String fileName) {
 		// initialize reader and string
 		BufferedReader fileReader = null;
@@ -95,7 +102,12 @@ public class csvFileReader {
 		return -1;
 	}
 
-	// return list of all items
+	/**
+	 * Return list of all Items
+	 * 
+	 * @param fileName
+	 * @return
+	 */
 	public ArrayList<Item> getData(String fileName) {
 		BufferedReader fileReader = null;
 		// create arraylist
@@ -147,7 +159,13 @@ public class csvFileReader {
 		return items;
 	}
 
-	// return item given its reference
+	/**
+	 * Return item given its reference
+	 * 
+	 * @param ref
+	 * @param fileName
+	 * @return
+	 */
 	public Item getItem(int ref, String fileName) {
 		BufferedReader fileReader = null;
 		try {
@@ -191,7 +209,6 @@ public class csvFileReader {
 			System.out.println("File Read Successfully");
 			return read;
 		} catch (Exception e) {
-
 			// output error information
 			System.out.println("Error");
 			Item read = new Item(0, "error", false, "none", false);
@@ -205,8 +222,6 @@ public class csvFileReader {
 				System.out.println("Error closing reader");
 				e.printStackTrace();
 			}
-
 		}
 	}
-
 }

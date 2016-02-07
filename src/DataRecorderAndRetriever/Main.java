@@ -7,10 +7,8 @@ import javafx.geometry.Pos;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -59,36 +57,11 @@ public class Main extends Application {
 		}
 		
 		manage.searchFor(fileName, search.getText());
-		
-		// reference column
-		TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
-		referenceColumn.setMinWidth(80);
-		referenceColumn.setCellValueFactory(new PropertyValueFactory<>("reference"));
-
-		// name column
-		TableColumn<Item, Double> nameColumn = new TableColumn<>("Item Name");
-		nameColumn.setMinWidth(250);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-		// available column
-		TableColumn<Item, String> availableColumn = new TableColumn<>("Available");
-		availableColumn.setMinWidth(80);
-		availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
-
-		// ID column
-		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
-		IDColumn.setMinWidth(150);
-		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-
-		// Permission column
-		TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
-		permColumn.setMinWidth(100);
-		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
 		table = new TableView<>();
 		table.setItems(UIManager.getItems(fileName, search.getText()));
 		table.setMaxWidth(675);
-		table.getColumns().addAll(referenceColumn, nameColumn, availableColumn, IDColumn, permColumn);
+		table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn(), UIManager.availableColumn(), UIManager.IDColumn(), UIManager.permColumn());
 
 		Button checkout = new Button("Checkout");
 		checkout.setOnAction(e -> {
