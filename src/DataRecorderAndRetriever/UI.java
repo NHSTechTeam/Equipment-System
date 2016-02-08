@@ -30,10 +30,9 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
-		checkout.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
+		UIManager.windowBasic(window, "Equipment Checkout Item", 250, label, errors, checkout);
 
 		TextField itemInput = new TextField();
 		itemInput.setPromptText("Item Barcode");
@@ -86,10 +85,9 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
-		checkout.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
+		UIManager.windowBasic(window, "Equipment Checkout Member ID", 250, label, errors, checkout);
 
 		TextField IDInput = new TextField();
 		IDInput.setPromptText("Member ID");
@@ -149,11 +147,10 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
-		checkout.getStylesheets().add("style.css");
 		Label label = new Label();
 		csvFileReader read = new csvFileReader();
 
-		UIManager.windowBasic(window, "Equipment Checkout", 250, label, errors);
+		UIManager.windowBasic(window, "Equipment Checkout Confirmation", 250, label, errors, checkout);
 
 		PasswordField passInput = new PasswordField();
 		passInput.setPromptText("Password");
@@ -206,10 +203,9 @@ public class UI {
 		Stage window = new Stage();
 		VBox checkinLayout = new VBox(10);
 		Scene checkin = new Scene(checkinLayout);
-		checkin.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors);
+		UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors, checkin);
 
 		TextField itemInput = new TextField();
 		itemInput.setPromptText("Item Barcode");

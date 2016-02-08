@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 
 public class UIExecutive {
 	static ItemManager manage = new ItemManager();
+	static csvFileWriter write = new csvFileWriter();
+	static csvFileReader read = new csvFileReader();
 	static Label errors = new Label();
 
 	/**
@@ -40,10 +42,9 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox registerLayout = new VBox(10);
 		Scene register = new Scene(registerLayout, 250, 250);
-		register.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Register Item", 250, label, errors);
+		UIManager.windowBasic(window, "Register Item", 250, label, errors, register);
 
 		// Register
 		TextField itemName = new TextField();
@@ -94,10 +95,9 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox removeLayout = new VBox(10);
 		Scene remove = new Scene(removeLayout, 250, 250);
-		remove.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Remove Item", 250, label, errors);
+		UIManager.windowBasic(window, "Remove Item", 250, label, errors, remove);
 
 		// Remove
 		TextField RemitemID = new TextField();
@@ -149,13 +149,12 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox registryLayout = new VBox(10);
 		Scene registry = new Scene(registryLayout, 250, 250);
-		registry.getStylesheets().add("style.css");
 		TableView<Item> table;
 		Label label = new Label();
 		TextField search = new TextField();
 		search.setPromptText("Search");
 
-		UIManager.windowBasic(window, "Item Manager", 700, label, errors);
+		UIManager.windowBasic(window, "Item Manager", 700, label, errors, registry);
 
 		manage.searchFor(file, search.getText());
 
@@ -240,11 +239,10 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox showLayout = new VBox(10), show2Layout = new VBox(10);
 		Scene show = new Scene(showLayout, 250, 250), show2 = new Scene(show2Layout, 500, 150);
-		show.getStylesheets().add("style.css");
 		show2.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Equipment Status", 250, label, errors);
+		UIManager.windowBasic(window, "Equipment Status", 250, label, errors, show);
 
 		// Show Item Status
 		Label showStatus = new Label();
@@ -310,11 +308,9 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox changeLayout = new VBox(10);
 		Scene change = new Scene(changeLayout, 250, 250);
-		change.getStylesheets().add("style.css");
-		csvFileWriter write = new csvFileWriter();
 		Label label = new Label(), oldpass = new Label(), newpass = new Label(), confirmnewpass = new Label();
 
-		UIManager.windowBasic(window, "Change Password", 250, label, errors);
+		UIManager.windowBasic(window, "Change Password", 250, label, errors, change);
 
 		oldpass.setText("Current Password");
 		newpass.setText("New Password");
@@ -359,10 +355,9 @@ public class UIExecutive {
 		Stage window = new Stage();
 		VBox clearLayout = new VBox(10);
 		Scene clear = new Scene(clearLayout, 250, 250);
-		clear.getStylesheets().add("style.css");
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Clear Registry", 250, label, errors);
+		UIManager.windowBasic(window, "Clear Registry", 250, label, errors, clear);
 
 		// Clear File
 		Label clearLabel = new Label(), clearStatus = new Label();
@@ -410,12 +405,10 @@ public class UIExecutive {
 		VBox passCheckLayout = new VBox(10), optionsMenu = new VBox(10);
 		BorderPane optionsLayout = new BorderPane();
 		Scene passCheck = new Scene(passCheckLayout, 250, 250), options = new Scene(optionsLayout, 350, 350);
-		options.getStylesheets().add("style.css");
 		passCheck.getStylesheets().add("style.css");
-		csvFileReader read = new csvFileReader();
 		Label label = new Label();
 
-		UIManager.windowBasic(window, "Executive Options", 250, label, errors);
+		UIManager.windowBasic(window, "Executive Options", 250, label, errors, options);
 
 		// Other Options Menu
 		Menu legacy = new Menu("_Legacy");
