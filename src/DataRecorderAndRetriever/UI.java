@@ -97,7 +97,8 @@ public class UI {
 			errors.setText("");
 			if (UIManager.isInt(IDInput, IDInput.getText())) {
 				checkoutIDInput = Integer.parseInt(IDInput.getText());
-				if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")) {
+				if (Boolean.parseBoolean(
+						manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
 					IDInput.clear();
 					window.close();
 				} else {
@@ -114,7 +115,8 @@ public class UI {
 				errors.setText("");
 				if (UIManager.isInt(IDInput, IDInput.getText())) {
 					checkoutIDInput = Integer.parseInt(IDInput.getText());
-					if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")) {
+					if (Boolean.parseBoolean(
+							manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
 						IDInput.clear();
 						window.close();
 					} else {
@@ -160,7 +162,8 @@ public class UI {
 		button.setOnAction(e -> {
 			errors.setText("");
 			if (pass.equals(passInput.getText())) {
-				if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, passInput.getText())) {
+				if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
+						passInput.getText())[0])) {
 					window.close();
 					passInput.clear();
 				}
@@ -173,8 +176,8 @@ public class UI {
 			if (e.getCode().equals(KeyCode.ENTER)) {
 				errors.setText("");
 				if (pass.equals(passInput.getText())) {
-					if (manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
-							passInput.getText())) {
+					if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
+							passInput.getText())[0])) {
 						passInput.clear();
 						window.close();
 					}

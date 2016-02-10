@@ -1,6 +1,8 @@
 package DataRecorderAndRetriever;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * 
@@ -22,7 +24,7 @@ public class ItemManager {
 	 * @param Pass
 	 * @return
 	 */
-	public boolean checkOut(int ref, String fileName, String passFile, String member, int ID, String Pass) {
+	public String[] checkOut(int ref, String fileName, String passFile, String member, int ID, String Pass) {
 
 		// create reader and writer
 		csvFileReader read = new csvFileReader();
@@ -43,16 +45,45 @@ public class ItemManager {
 		if (((items.get(pos).getPermission() != true) && (Pass == "")) || (Pass.equals(pass))) {
 
 			// checkout item
-			(items.get(pos)).checkOut(name);
-
+			boolean checked = (items.get(pos)).checkOut(name);
+			log(items.get(pos), name);
 			// rewrite file
 			write.enterData(items);
 			write.writeCsvFile(fileName);
-			return true;
+			if (checked){
+				return ("true, Item checked out successfully").split(",");
+			} else {
+				return ("true, Item not available").split(",");
+			}
+			
 		} else {
 			System.out.println("Password Incorrect");
-			return false;
+			return ("false,Password Required").split(",");
 		}
+	}
+	
+	public void log(Item item, String name){
+		//make reader and writer
+		csvFileReader read = new csvFileReader();
+		csvFileWriter write = new csvFileWriter();
+		
+		//set filename
+		String logFileName = System.getProperty("user.home") + "/Log.csv";
+		
+		//get data
+		ArrayList<Item> list = new ArrayList<Item>();
+		list = read.getData(logFileName);
+		
+		//get date
+		Date date = new Date();
+		String time = (new Timestamp(date.getTime())).toString();
+		
+		//add item
+		Item log = new Item(item.getReference(),item.getName(),item.getAvailable(), name + " - " + time,false);
+		list.add(log);
+		write.enterData(list);
+		write.writeCsvFile(logFileName);
+		
 	}
 
 	/**
@@ -87,10 +118,10 @@ public class ItemManager {
 
 		// create array
 		ArrayList<Item> items = read.getData(fileName);
-
+		String person = items.get(pos).getID();
 		// checkin item
 		(items.get(pos)).checkIn();
-
+		log(items.get(pos), person);
 		// rewrite file
 		write.enterData(items);
 		write.writeCsvFile(fileName);

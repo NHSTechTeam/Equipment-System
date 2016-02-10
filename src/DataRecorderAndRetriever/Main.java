@@ -42,10 +42,12 @@ public class Main extends Application {
 		String fileName = System.getProperty("user.home") + "/item.csv";
 		String passFileName = System.getProperty("user.home") + "/notoflookinghere.csv";
 		String IDFileName = System.getProperty("user.home") + "/memberlist.csv";
+		String logFileName = System.getProperty("user.home") + "/Log.csv";
 		File x = new File(fileName);
 		// if no file exists with given names, create default files
 		if (!x.exists()) {
 			csvFileWriter write = new csvFileWriter();
+			write.writeCsvFile(logFileName);
 			write.writeCsvFile(fileName);
 			write.writeCsvFile(IDFileName);
 			ArrayList<Item> list = new ArrayList<Item>();

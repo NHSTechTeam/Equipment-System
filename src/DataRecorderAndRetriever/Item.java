@@ -42,12 +42,14 @@ public class Item {
 	 * 
 	 * @param ID
 	 */
-	public void checkOut(String ID) {
+	public boolean checkOut(String ID) {
 		if (available) {
 			this.ID = ID;
 			available = false;
+			return true;
 		} else {
 			System.out.println("Item not available.");
+			return false;
 		}
 	}
 
