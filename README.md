@@ -1,14 +1,31 @@
-# Equipment-System
-#### We needed a new system in which to log in and out equipment from the rooms so that everything can be adequately.
-The system as a whole will require it to be managed entirely inside the program so that after the members who create it leave, it can still be used perfectly.
-## Documentation
+Equipment-System
+================
+
+##### Equipment checkout tracking, simplified.
+
+Equipment-System is a simple interface that allows users to check equipment in and out for various uses,
+and gives Eboard members an at-a-glance view of the status of the team's equipment. Gone are the days of
+having no idea who checked out the cameras - just look at the logs.
+
+## Usage Docs
+
 ### Equipment Management
+
 ##### Check-Out
-For a member to check out an item, they simply need to select checkout, scan (or enter) the barcode reference of the item, then scan (or enter) the ID number of the member checking the item out. Both of these must be numbers (integer values) in order for them to be valid.
-If after both of these data values are put in, it still asks for one more field then the executive password must be entered in order to grant checkout to the item.
+To check out an item, simply select checkout, scan or enter in the barcode reference of the item then the ID number of
+the member checking the item out. Both these values are simple integers.
+
+Some items require an Eboard member to authorize checkout.
+
 ##### Check-In
-Checkin is easy. In order for an item to be checked in, a member simply needs to scan the barcode reference of the item they are checking in. As soon as it is scanned, the item is made available for use by other members.
-###### Search
+Checkin is easy. Just scan the barcode reference of the item they are checking in.
+As soon as it is scanned, the item is made available for use by other members.
+
+##### Search
 The search function allows for the table to show only what is in the search query. It searches in (mostly) real time. Hitting enter isn't required, but recommended.
+
 ### System Management
+TODO: Management docs
+
 #### Item Manager
+TODO: Item Manager docs
