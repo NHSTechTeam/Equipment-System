@@ -4,18 +4,18 @@ Equipment-System
 ##### Equipment checkout tracking, simplified.
 
 Equipment-System is a simple interface that allows users to check equipment in and out for various uses,
-and gives Eboard members an at-a-glance view of the status of the team's equipment. Gone are the days of
+and gives Executives an at-a-glance view of the status of the team's equipment. Gone are the days of
 having no idea who checked out the cameras - just look at the logs.
 
-## Usage Docs
+## Usage Documentation
 
 ### Equipment Management
 
 ##### Check-Out
-To check out an item, simply select checkout, scan or enter in the barcode reference of the item then the ID number of
+To check out an item, simply select checkout, scan or enter in the barcode reference of the item followed by the ID number of
 the member checking the item out. Both these values are simple integers.
 
-Some items require an Eboard member to authorize checkout.
+Some items require an Executive to authorize checkout.
 
 ##### Check-In
 Checkin is easy. Just scan the barcode reference of the item they are checking in.

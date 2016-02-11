@@ -10,8 +10,8 @@ import javafx.scene.layout.VBox;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.3-Alpha
- * @since 2016-02-06
+ * @version v0.4-Alpha
+ * @since 2016-02-10
  */
 public class UI {
 	static ItemManager manage = new ItemManager();

@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.3-Alpha
- * @since 2016-02-06
+ * @version v0.4-Alpha
+ * @since 2016-02-10
  */
 
 public class UIManager {
@@ -98,6 +98,24 @@ public class UIManager {
 		}
 		return items;
 	}
+	
+	public static ObservableList<Item> getLog(String log, String Search) {
+		ObservableList<Item> logs = FXCollections.observableArrayList();
+		csvFileReader read = new csvFileReader();
+		ItemManager manage = new ItemManager();
+		if (Search.equals("")) {
+			ArrayList<Item> list = read.getData(log);
+			for (int i = 0; i < list.size(); i++) {
+				logs.add(list.get(i));
+			}
+		} else {
+			ArrayList<Item> list = manage.searchFor(log, Search);
+			for (int i = 0; i < list.size(); i++) {
+				logs.add(list.get(i));
+			}
+		}
+		return logs;
+	}
 
 	/**
 	 * Deletes the selected file from the table. Takes the data in and removes
@@ -152,12 +170,28 @@ public class UIManager {
 		return availableColumn;
 	}
 	
+	public static TableColumn<Item, String> inoutColumn() {
+		// available column
+		TableColumn<Item, String> inoutColumn = new TableColumn<>("In/Out");
+		inoutColumn.setMinWidth(80);
+		inoutColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
+		return inoutColumn;
+	}
+	
 	public static TableColumn<Item, String> IDColumn() {
 		// ID column
 		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
 		return IDColumn;
+	}
+	
+	public static TableColumn<Item, String> logInfoColumn() {
+		// ID column
+		TableColumn<Item, String> logInfoColumn = new TableColumn<>("Member - In/Out Time & Date");
+		logInfoColumn.setMinWidth(250);
+		logInfoColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		return logInfoColumn;
 	}
 	
 	public static TableColumn<Item, String> permColumn() {

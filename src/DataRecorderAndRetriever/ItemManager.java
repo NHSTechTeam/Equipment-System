@@ -7,8 +7,8 @@ import java.util.Date;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.3-Alpha
- * @since 2016-02-06
+ * @version v0.4-Alpha
+ * @since 2016-02-10
  */
 
 public class ItemManager {
@@ -79,7 +79,7 @@ public class ItemManager {
 		String time = (new Timestamp(date.getTime())).toString();
 		
 		//add item
-		Item log = new Item(item.getReference(),item.getName(),item.getAvailable(), name + " - " + time,false);
+		Item log = new Item(item.getReference(),item.getName(),item.getAvailable(), name + " - " + time, false);
 		list.add(log);
 		write.enterData(list);
 		write.writeCsvFile(logFileName);

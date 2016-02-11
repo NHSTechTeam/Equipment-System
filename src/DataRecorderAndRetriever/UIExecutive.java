@@ -22,8 +22,8 @@ import javafx.stage.Stage;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.3-Alpha
- * @since 2016-02-06
+ * @version v0.4-Alpha
+ * @since 2016-02-10
  */
 
 public class UIExecutive {
@@ -230,6 +230,46 @@ public class UIExecutive {
 	}
 
 	/**
+	 * View the Log of checkouts/checkins.
+	 * One note is if an item was checked in, it will read true, and checked out will read false
+	 * @param log
+	 */
+	public static void log(String log){
+		Stage window = new Stage();
+		VBox logLayout = new VBox(10);
+		Scene Log = new Scene(logLayout, 250, 250);
+		TextField search = new TextField();
+		search.setPromptText("Search");
+		TableView<Item> table;
+		Label label = new Label();
+		
+		UIManager.windowBasic(window, "Checkout Log", 700, label, errors, Log);
+		
+		manage.searchFor(log, search.getText());
+
+		table = new TableView<>();
+		table.setItems(UIManager.getLog(log, search.getText()));
+		table.setMaxWidth(675);
+		table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn(), UIManager.inoutColumn(), UIManager.logInfoColumn());
+		
+		search.setOnKeyPressed(e -> {
+				table.setItems(UIManager.getItems(log, search.getText()));
+		});
+		
+		Button logBack = new Button("Back");
+		logBack.setOnAction(e -> {
+			table.setItems(UIManager.getLog(log, search.getText()));
+			errors.setText("");
+			window.close();
+		});
+
+		logLayout.getChildren().addAll(search, table, logBack);
+		logLayout.setAlignment(Pos.CENTER);
+		window.setScene(Log);
+		window.show();
+	}
+	
+	/**
 	 * Show Item Status Window
 	 * 
 	 * @param file
@@ -400,7 +440,7 @@ public class UIExecutive {
 	 * @param passFile
 	 *            Links to the password file
 	 */
-	public static void executive(String file, String passFile) {
+	public static void executive(String file, String passFile, String logFile) {
 		Stage window = new Stage();
 		VBox passCheckLayout = new VBox(10), optionsMenu = new VBox(10);
 		BorderPane optionsLayout = new BorderPane();
@@ -410,7 +450,7 @@ public class UIExecutive {
 
 		UIManager.windowBasic(window, "Executive Options", 250, label, errors, options);
 
-		// Other Options Menu
+		// Legacy Options Menu
 		Menu legacy = new Menu("_Legacy");
 		MenuBar menu = new MenuBar();
 		MenuItem register = new MenuItem("Register");
@@ -427,6 +467,8 @@ public class UIExecutive {
 		show.setOnAction(e -> show(file));
 		Button fle = new Button("Item Manager");
 		fle.setOnAction(e -> registry(file));
+		Button log = new Button("Checkout Log");
+		log.setOnAction(e -> log(logFile));
 		Button clr = new Button("Clear Item Registry");
 		clr.setOnAction(e -> clear(file));
 		Button chn = new Button("Change Executive Password");
@@ -469,7 +511,7 @@ public class UIExecutive {
 		passCheckLayout.setAlignment(Pos.CENTER);
 
 		optionsLayout.setTop(menu);
-		optionsMenu.getChildren().addAll(label, fle, clr, chn);
+		optionsMenu.getChildren().addAll(label, fle, log, clr, chn);
 		optionsMenu.setAlignment(Pos.CENTER);
 		optionsLayout.setCenter(optionsMenu);
 

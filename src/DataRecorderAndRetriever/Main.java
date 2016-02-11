@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.3-Alpha
- * @since 2016-02-06
+ * @version v0.4-Alpha
+ * @since 2016-02-10
  */
 
 public class Main extends Application {
@@ -87,7 +87,7 @@ public class Main extends Application {
 		menu.setAlignment(Pos.CENTER);
 		menu.getChildren().addAll(checkout, checkin);
 		
-		executive.setOnAction(e -> UIExecutive.executive(fileName, passFileName));
+		executive.setOnAction(e -> UIExecutive.executive(fileName, passFileName, logFileName));
 
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(search, table, menu, executive);
