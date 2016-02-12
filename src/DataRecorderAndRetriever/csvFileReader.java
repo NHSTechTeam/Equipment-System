@@ -7,8 +7,8 @@ import java.util.ArrayList;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.4-Alpha
- * @since 2016-02-10
+ * @version v0.5-Alpha
+ * @since 2016-02-11
  */
 
 public class csvFileReader {

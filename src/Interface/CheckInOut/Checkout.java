@@ -1,19 +1,21 @@
-package DataRecorderAndRetriever;
+package Interface.CheckInOut;
 
-import javafx.scene.input.KeyCode;
-import javafx.stage.*;
+import DataRecorderAndRetriever.*;
+import Interface.*;
+import javafx.geometry.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.geometry.Pos;
-import javafx.scene.layout.VBox;
-
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.4-Alpha
- * @since 2016-02-10
+ * @version v0.5-Alpha
+ * @since 2016-02-11
  */
-public class UI {
+public class Checkout {
+
 	static ItemManager manage = new ItemManager();
 	static Label errors = new Label();
 	static int checkoutItemInput, checkoutIDInput;
@@ -195,54 +197,5 @@ public class UI {
 		window.setScene(checkout);
 		window.showAndWait();
 	}
-
-	/**
-	 * Check-In Window
-	 * 
-	 * @param file
-	 *            Links the main item File
-	 */
-	public static void checkin(String file) {
-		Stage window = new Stage();
-		VBox checkinLayout = new VBox(10);
-		Scene checkin = new Scene(checkinLayout);
-		Label label = new Label();
-
-		UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors, checkin);
-
-		TextField itemInput = new TextField();
-		itemInput.setPromptText("Item Barcode");
-
-		Button button = new Button("Check In");
-		button.setOnAction(e -> {
-			errors.setText("");
-			if (UIManager.isInt(itemInput, itemInput.getText())) {
-				manage.checkIn(Integer.parseInt(itemInput.getText()), file);
-				itemInput.clear();
-				window.close();
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				itemInput.clear();
-			}
-		});
-		itemInput.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.ENTER)) {
-				if (UIManager.isInt(itemInput, itemInput.getText())) {
-					manage.checkIn(Integer.parseInt(itemInput.getText()), file);
-					itemInput.clear();
-					window.close();
-				} else {
-					errors.setText("Something Went Wrong. Try Again");
-					itemInput.clear();
-				}
-			}
-		});
-
-		checkinLayout.getChildren().addAll(label, errors, itemInput, button);
-		checkinLayout.setAlignment(Pos.CENTER);
-
-		// Display window and wait for it to be closed before returning
-		window.setScene(checkin);
-		window.showAndWait();
-	}
+	
 }

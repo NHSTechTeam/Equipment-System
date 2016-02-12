@@ -1,5 +1,7 @@
-package DataRecorderAndRetriever;
-
+import DataRecorderAndRetriever.*;
+import Interface.*;
+import Interface.CheckInOut.*;
+import Interface.Executive.*;
 import java.io.File;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
@@ -16,8 +18,8 @@ import javafx.stage.Stage;
 /**
  * 
  * @author James Sonne & Devin Matte
- * @version v0.4-Alpha
- * @since 2016-02-10
+ * @version v0.5-Alpha
+ * @since 2016-02-11
  */
 
 public class Main extends Application {
@@ -67,13 +69,13 @@ public class Main extends Application {
 
 		Button checkout = new Button("Checkout");
 		checkout.setOnAction(e -> {
-			UI.checkout(fileName, IDFileName, passFileName);
+			Checkout.checkout(fileName, IDFileName, passFileName);
 			table.setItems(UIManager.getItems(fileName, search.getText()));
 		});
 
 		Button checkin = new Button("Checkin");
 		checkin.setOnAction(e -> {
-			UI.checkin(fileName);
+			Checkin.checkin(fileName);
 			table.setItems(UIManager.getItems(fileName, search.getText()));
 		});
 		
@@ -87,7 +89,7 @@ public class Main extends Application {
 		menu.setAlignment(Pos.CENTER);
 		menu.getChildren().addAll(checkout, checkin);
 		
-		executive.setOnAction(e -> UIExecutive.executive(fileName, passFileName, logFileName));
+		executive.setOnAction(e -> ExecutiveMain.executive(fileName, passFileName, logFileName));
 
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(search, table, menu, executive);
