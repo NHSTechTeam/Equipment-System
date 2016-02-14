@@ -27,7 +27,7 @@ public class LogView {
 		Scene Log = new Scene(logLayout, 250, 250);
 		TextField search = new TextField();
 		search.setPromptText("Search");
-		TableView<Item> table;
+		TableView<Log> table;
 		Label label = new Label();
 		
 		UIManager.windowBasic(window, "Checkout Log", 700, label, errors, Log);
@@ -37,10 +37,10 @@ public class LogView {
 		table = new TableView<>();
 		table.setItems(UIManager.getLog(log, search.getText()));
 		table.setMaxWidth(675);
-		table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn(), UIManager.inoutColumn(), UIManager.logInfoColumn());
+		table.getColumns().addAll(UIManager.refColumn(), UIManager.nameColumnLog(), UIManager.inColumn(), UIManager.personColumn(), UIManager.timeColumn());
 		
 		search.setOnKeyPressed(e -> {
-				table.setItems(UIManager.getItems(log, search.getText()));
+				table.setItems(UIManager.getLog(log, search.getText()));
 		});
 		
 		Button logBack = new Button("Back");

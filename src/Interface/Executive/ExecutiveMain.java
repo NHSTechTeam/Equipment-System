@@ -27,7 +27,7 @@ public class ExecutiveMain {
 	 * @param passFile
 	 *            Links to the password file
 	 */
-	public static void executive(String file, String passFile, String logFile) {
+	public static void executive(String file, String passFile, String logFile, String IDFile) {
 		csvFileReader read = new csvFileReader();
 		Label errors = new Label();
 		Stage window = new Stage();
@@ -56,6 +56,8 @@ public class ExecutiveMain {
 		show.setOnAction(e -> Status.show(file));
 		Button fle = new Button("Item Manager");
 		fle.setOnAction(e -> Registry.registry(file));
+		Button mem = new Button("Member Manager");
+		mem.setOnAction(e -> Members.memberManager(IDFile));
 		Button log = new Button("Checkout Log");
 		log.setOnAction(e -> LogView.log(logFile));
 		Button clr = new Button("Clear Item Registry");
@@ -100,7 +102,7 @@ public class ExecutiveMain {
 		passCheckLayout.setAlignment(Pos.CENTER);
 
 		optionsLayout.setTop(menu);
-		optionsMenu.getChildren().addAll(label, fle, log, clr, chn);
+		optionsMenu.getChildren().addAll(label, fle, mem, log, clr, chn);
 		optionsMenu.setAlignment(Pos.CENTER);
 		optionsLayout.setCenter(optionsMenu);
 

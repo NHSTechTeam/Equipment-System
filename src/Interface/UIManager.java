@@ -95,17 +95,16 @@ public class UIManager {
 		return items;
 	}
 	
-	public static ObservableList<Item> getLog(String log, String Search) {
-		ObservableList<Item> logs = FXCollections.observableArrayList();
-		csvFileReader read = new csvFileReader();
-		ItemManager manage = new ItemManager();
+	public static ObservableList<Log> getLog(String log, String Search) {
+		ObservableList<Log> logs = FXCollections.observableArrayList();
+		LogManager manage = new LogManager();
 		if (Search.equals("")) {
-			ArrayList<Item> list = read.getData(log);
+			ArrayList<Log> list = manage.getList(log);
 			for (int i = 0; i < list.size(); i++) {
 				logs.add(0, list.get(i));
 			}
 		} else {
-			ArrayList<Item> list = manage.searchFor(log, Search);
+			ArrayList<Log> list = manage.searchLog(Search, log);
 			for (int i = 0; i < list.size(); i++) {
 				logs.add(0, list.get(i));
 			}
@@ -166,28 +165,12 @@ public class UIManager {
 		return availableColumn;
 	}
 	
-	public static TableColumn<Item, String> inoutColumn() {
-		// available column
-		TableColumn<Item, String> inoutColumn = new TableColumn<>("In/Out");
-		inoutColumn.setMinWidth(80);
-		inoutColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
-		return inoutColumn;
-	}
-	
 	public static TableColumn<Item, String> IDColumn() {
 		// ID column
-		TableColumn<Item, String> IDColumn = new TableColumn<>("ID");
+		TableColumn<Item, String> IDColumn = new TableColumn<>("Member");
 		IDColumn.setMinWidth(150);
 		IDColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
 		return IDColumn;
-	}
-	
-	public static TableColumn<Item, String> logInfoColumn() {
-		// ID column
-		TableColumn<Item, String> logInfoColumn = new TableColumn<>("Member - In/Out Time & Date");
-		logInfoColumn.setMinWidth(250);
-		logInfoColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		return logInfoColumn;
 	}
 	
 	public static TableColumn<Item, String> permColumn() {
@@ -196,5 +179,47 @@ public class UIManager {
 		permColumn.setMinWidth(100);
 		permColumn.setCellValueFactory(new PropertyValueFactory<>("permission"));
 		return permColumn;
+	}
+	
+	//Log Items
+	
+	public static TableColumn<Log, String> refColumn() {
+		// Permission column
+		TableColumn<Log, String> refColumn = new TableColumn<>("Reference");
+		refColumn.setMinWidth(80);
+		refColumn.setCellValueFactory(new PropertyValueFactory<>("ref"));
+		return refColumn;
+	}
+	
+	public static TableColumn<Log, String> personColumn() {
+		// Permission column
+		TableColumn<Log, String> personColumn = new TableColumn<>("Member");
+		personColumn.setMinWidth(125);
+		personColumn.setCellValueFactory(new PropertyValueFactory<>("person"));
+		return personColumn;
+	}
+	
+	public static TableColumn<Log, String> nameColumnLog() {
+		// Permission column
+		TableColumn<Log, String> nameColumnLog = new TableColumn<>("Item Name");
+		nameColumnLog.setMinWidth(200);
+		nameColumnLog.setCellValueFactory(new PropertyValueFactory<>("name"));
+		return nameColumnLog;
+	}
+	
+	public static TableColumn<Log, String> timeColumn() {
+		// Permission column
+		TableColumn<Log, String> timeColumn = new TableColumn<>("Date & Time");
+		timeColumn.setMinWidth(170);
+		timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+		return timeColumn;
+	}
+	
+	public static TableColumn<Log, String> inColumn() {
+		// Permission column
+		TableColumn<Log, String> inColumn = new TableColumn<>("In/Out");
+		inColumn.setMinWidth(80);
+		inColumn.setCellValueFactory(new PropertyValueFactory<>("in"));
+		return inColumn;
 	}
 }

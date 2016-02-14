@@ -89,7 +89,7 @@ public class Main extends Application {
 		menu.setAlignment(Pos.CENTER);
 		menu.getChildren().addAll(checkout, checkin);
 		
-		executive.setOnAction(e -> ExecutiveMain.executive(fileName, passFileName, logFileName));
+		executive.setOnAction(e -> ExecutiveMain.executive(fileName, passFileName, logFileName, IDFileName));
 
 		VBox layout = new VBox(10);
 		layout.getChildren().addAll(search, table, menu, executive);
