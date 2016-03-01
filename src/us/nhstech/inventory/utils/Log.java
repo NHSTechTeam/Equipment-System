@@ -1,4 +1,4 @@
-package DataRecorderAndRetriever;
+package us.nhstech.inventory.utils;
 
 public class Log {
 	private int ref;
