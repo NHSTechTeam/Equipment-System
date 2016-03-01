@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import us.nhstech.inventory.logging.Checkin;
-import us.nhstech.inventory.logging.Checkout;
+import us.nhstech.inventory.logging.CheckIn;
+import us.nhstech.inventory.logging.CheckOut;
 import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
@@ -92,13 +92,13 @@ public class Main extends Application {
 
         Button checkout = new Button("Checkout");
         checkout.setOnAction(e -> {
-            Checkout.checkout(fileName, IDFileName, passFileName);
+            CheckOut.checkOut(fileName, IDFileName, passFileName);
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
         Button checkin = new Button("Checkin");
         checkin.setOnAction(e -> {
-            Checkin.checkin(fileName);
+            CheckIn.checkIn(fileName);
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
