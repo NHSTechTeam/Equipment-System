@@ -29,19 +29,36 @@ import us.nhstech.inventory.utils.csvFileWriter;
  */
 
 public class Main extends Application {
-    ItemManager manage = new ItemManager();
-    Stage window;
-    Button checkout, checkin, show, executive;
+
+    // Added private modifier. Unless you specifically know why, always use
+    // public or private on your variables.
+    // Having no modifier means that it is package protected. In this instance
+    // it doesn't matter as there are no other classes in this package, but it
+    // is a really good practice to get into.
+    private ItemManager manage = new ItemManager();
+    private Stage window;
+
+    // I removed the instance variables Buttons, and moved them to the method.
+    // For three of them, this was already being done. Unless you need to use
+    // the variables in every method, you should try to keep variables local.
+    // This is because the variables will be cleaned up faster than if you leave
+    // them local.
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    // In your method, the table.getColumns().addAll() contains unchecked
+    // variable types. This can cause things to fail. I will allow you to poke
+    // through that to figure it out. This @Suppress just tells your IDE not to
+    // underline everything in yellow. It is a good idea to leave it like this
+    // unless you have intentions to actually fix it.
+    @SuppressWarnings("unchecked")
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setMaximized(true);
         window.setTitle("Equipment Manager");
-        executive = new Button("Executive Options");
+        Button executive = new Button("Executive Options");
         TextField search = new TextField();
         search.setPromptText("Search");
         TableView<Item> table;
