@@ -19,7 +19,7 @@ import us.nhstech.inventory.utils.csvFileReader;
  * @version v0.5-Alpha
  * @since 2016-02-11
  */
-public class Checkout {
+public class CheckOut {
 
     static ItemManager manage = new ItemManager();
     static Label errors = new Label();
@@ -33,7 +33,7 @@ public class Checkout {
      * @param IDfile
      *            Links the Memberlist File
      */
-    public static void checkout(String file, String IDfile, String passfile) {
+    public static void checkOut(String file, String IDfile, String passfile) {
         Stage window = new Stage();
         VBox checkoutLayout = new VBox(10);
         Scene checkout = new Scene(checkoutLayout);

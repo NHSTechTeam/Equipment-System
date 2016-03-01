@@ -17,7 +17,7 @@ import us.nhstech.inventory.utils.ItemManager;
  * @version v0.5-Alpha
  * @since 2016-02-11
  */
-public class Checkin {
+public class CheckIn {
 
     /**
      * Check-In Window
