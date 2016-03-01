@@ -25,7 +25,7 @@ public class CheckIn {
      * @param file
      *            Links the main item File
      */
-    public static void checkin(String file) {
+    public static void checkIn(String file) {
         ItemManager manage = new ItemManager();
         Label errors = new Label();
         Stage window = new Stage();

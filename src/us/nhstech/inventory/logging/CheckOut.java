@@ -21,9 +21,9 @@ import us.nhstech.inventory.utils.csvFileReader;
  */
 public class CheckOut {
 
-    static ItemManager manage = new ItemManager();
-    static Label errors = new Label();
-    static int checkoutItemInput, checkoutIDInput;
+    private static ItemManager manage = new ItemManager();
+    private static Label errors = new Label();
+    private static int checkoutItemInput, checkoutIDInput;
 
     /**
      * Checkout Window
