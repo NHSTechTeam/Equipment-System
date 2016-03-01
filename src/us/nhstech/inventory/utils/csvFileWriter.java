@@ -1,4 +1,4 @@
-package DataRecorderAndRetriever;
+package us.nhstech.inventory.utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
