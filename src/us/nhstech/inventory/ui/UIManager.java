@@ -157,6 +157,7 @@ public class UIManager {
         TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
         referenceColumn.setMinWidth(80);
         referenceColumn.setCellValueFactory(new PropertyValueFactory<>("reference"));
+        referenceColumn.setSortType(TableColumn.SortType.ASCENDING);
         return referenceColumn;
     }
 
