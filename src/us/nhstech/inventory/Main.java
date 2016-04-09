@@ -1,15 +1,15 @@
 package us.nhstech.inventory;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -89,18 +89,35 @@ public class Main extends Application {
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
+        MenuBar menuBar = new MenuBar();
+        Menu help = new Menu("_Help");
+        MenuItem code = new MenuItem("View Code");
+        help.getItems().add(code);
+        menuBar.getMenus().addAll(help);
+        URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
+        code.setOnAction(e -> UIManager.openWebpage(codelink));
+
         HBox menu = new HBox();
         menu.setPadding(new Insets(10, 10, 10, 10));
         menu.setSpacing(10);
         menu.setAlignment(Pos.CENTER);
         menu.getChildren().addAll(checkout, checkin);
 
-        executive.setOnAction(e -> ExecutiveMain.executive(fileName, passFileName, logFileName, IDFileName));
+        executive.setOnAction(e -> {
+            try {
+                ExecutiveMain.executive(fileName, passFileName, logFileName, IDFileName);
+            } catch (URISyntaxException e1) {
+                e1.printStackTrace();
+            }
+        });
 
+        BorderPane borderLayout = new BorderPane();
         VBox layout = new VBox(10);
+        borderLayout.setTop(menuBar);
+        borderLayout.setCenter(layout);
         layout.getChildren().addAll(search, table, menu, executive);
         layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout, 300, 250);
+        Scene scene = new Scene(borderLayout, 300, 250);
         scene.getStylesheets().add("style.css");
         window.setScene(scene);
         window.show();

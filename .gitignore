@@ -114,3 +114,7 @@ Session.vim
 .classpath
 .project
 bin/
+equipment_system.properties
+src/META-INF/MANIFEST.MF
+debug.log
+equipment_system.xml

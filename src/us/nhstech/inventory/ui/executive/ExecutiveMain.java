@@ -1,6 +1,9 @@
 package us.nhstech.inventory.ui.executive;
 
 import javafx.geometry.Pos;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,7 +38,7 @@ public class ExecutiveMain {
      * @param passFile
      *            Links to the password file
      */
-    public static void executive(String file, String passFile, String logFile, String IDFile) {
+    public static void executive(String file, String passFile, String logFile, String IDFile) throws URISyntaxException {
         csvFileReader read = new csvFileReader();
         Label errors = new Label();
         Stage window = new Stage();
@@ -53,10 +56,18 @@ public class ExecutiveMain {
         MenuItem register = new MenuItem("Register");
         MenuItem remove = new MenuItem("Remove");
         MenuItem show = new MenuItem("Show Status");
+        Menu settings = new Menu("_Settings");
+        MenuItem clear = new MenuItem("Clear Registry");
+        MenuItem change = new MenuItem("Change Password");
+        Menu help = new Menu("_Help");
+        MenuItem code = new MenuItem("View Code");
         legacy.getItems().add(register);
         legacy.getItems().add(remove);
         legacy.getItems().add(show);
-        menu.getMenus().addAll(legacy);
+        settings.getItems().add(clear);
+        settings.getItems().add(change);
+        help.getItems().add(code);
+        menu.getMenus().addAll(legacy, settings, help);
 
         // Options
         register.setOnAction(e -> Register.register(file));
@@ -68,10 +79,10 @@ public class ExecutiveMain {
         mem.setOnAction(e -> Members.memberManager(IDFile));
         Button log = new Button("Checkout Log");
         log.setOnAction(e -> LogView.log(logFile));
-        Button clr = new Button("Clear Item Registry");
-        clr.setOnAction(e -> ClearRegistry.clear(file));
-        Button chn = new Button("Change Executive Password");
-        chn.setOnAction(e -> ChangePassword.changePass(file, passFile));
+        clear.setOnAction(e -> ClearRegistry.clear(file));
+        change.setOnAction(e -> ChangePassword.changePass(file, passFile));
+        URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
+        code.setOnAction(e -> UIManager.openWebpage(codelink));
 
         // Password
         String pass = (read.getItem(1000, passFile)).getName();
@@ -110,7 +121,7 @@ public class ExecutiveMain {
         passCheckLayout.setAlignment(Pos.CENTER);
 
         optionsLayout.setTop(menu);
-        optionsMenu.getChildren().addAll(label, fle, mem, log, clr, chn);
+        optionsMenu.getChildren().addAll(label, fle, mem, log);
         optionsMenu.setAlignment(Pos.CENTER);
         optionsLayout.setCenter(optionsMenu);
 
