@@ -20,6 +20,7 @@ import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
+import us.nhstech.inventory.utils.databaseManager;
 
 /**
  * 
@@ -35,6 +36,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        try {
+            databaseManager.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void start(Stage primaryStage) throws Exception {
