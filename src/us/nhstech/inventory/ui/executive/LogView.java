@@ -13,7 +13,6 @@ import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.Log;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -22,7 +21,7 @@ public class LogView {
     /**
      * View the Log of checkouts/checkins. One note is if an item was checked
      * in, it will read true, and checked out will read false
-     * 
+     *
      * @param log
      */
     public static void log(String log) {

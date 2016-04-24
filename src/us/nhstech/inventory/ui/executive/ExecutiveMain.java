@@ -1,17 +1,8 @@
 package us.nhstech.inventory.ui.executive;
 
 import javafx.geometry.Pos;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -21,6 +12,9 @@ import us.nhstech.inventory.ui.executive.legacy.Register;
 import us.nhstech.inventory.ui.executive.legacy.Remove;
 import us.nhstech.inventory.ui.executive.legacy.Status;
 import us.nhstech.inventory.utils.csvFileReader;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * @author James Sonne & Devin Matte

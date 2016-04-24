@@ -1,7 +1,5 @@
 package us.nhstech.inventory.ui.executive.legacy;
 
-import java.util.Scanner;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +11,9 @@ import javafx.stage.Stage;
 import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.utils.ItemManager;
 
+import java.util.Scanner;
+
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -22,9 +21,8 @@ import us.nhstech.inventory.utils.ItemManager;
 public class Status {
     /**
      * Show Item Status Window
-     * 
-     * @param file
-     *            Links the main item File
+     *
+     * @param file Links the main item File
      */
     public static void show(String file) {
         ItemManager manage = new ItemManager();

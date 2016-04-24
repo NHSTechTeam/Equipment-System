@@ -11,7 +11,6 @@ import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.utils.csvFileWriter;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -19,11 +18,9 @@ import us.nhstech.inventory.utils.csvFileWriter;
 public class ChangePassword {
     /**
      * Change the Executive Password
-     * 
-     * @param file
-     *            Links the main item File
-     * @param passFile
-     *            Links to the password file
+     *
+     * @param file     Links the main item File
+     * @param passFile Links to the password file
      */
     public static void changePass(String file, String passFile) {
         csvFileWriter write = new csvFileWriter();

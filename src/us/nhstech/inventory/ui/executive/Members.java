@@ -1,7 +1,5 @@
 package us.nhstech.inventory.ui.executive;
 
-import java.util.Scanner;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,8 +14,9 @@ import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 
+import java.util.Scanner;
+
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11

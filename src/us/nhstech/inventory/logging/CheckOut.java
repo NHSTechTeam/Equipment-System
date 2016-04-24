@@ -14,7 +14,6 @@ import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileReader;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -27,11 +26,9 @@ public class CheckOut {
 
     /**
      * Checkout Window
-     * 
-     * @param file
-     *            Links the main item File
-     * @param IDfile
-     *            Links the Memberlist File
+     *
+     * @param file   Links the main item File
+     * @param IDfile Links the Memberlist File
      */
     public static void checkOut(String file, String IDfile, String passfile) {
         Stage window = new Stage();
@@ -82,11 +79,9 @@ public class CheckOut {
 
     /**
      * CheckoutID Window
-     * 
-     * @param file
-     *            Links the main item File
-     * @param IDfile
-     *            Links the Memberlist File
+     *
+     * @param file   Links the main item File
+     * @param IDfile Links the Memberlist File
      */
     public static void checkoutID(String file, String IDfile, String passfile) {
         Stage window = new Stage();
@@ -145,7 +140,7 @@ public class CheckOut {
 
     /**
      * Checkout Confirm. Confirms password on items that require it for checkout
-     * 
+     *
      * @param file
      * @param IDfile
      * @param passfile

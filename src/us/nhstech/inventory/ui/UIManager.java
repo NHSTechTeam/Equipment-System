@@ -1,11 +1,5 @@
 package us.nhstech.inventory.ui;
 
-import java.awt.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -16,12 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import us.nhstech.inventory.utils.Item;
-import us.nhstech.inventory.utils.ItemManager;
-import us.nhstech.inventory.utils.Log;
-import us.nhstech.inventory.utils.LogManager;
-import us.nhstech.inventory.utils.csvFileReader;
-import us.nhstech.inventory.utils.csvFileWriter;
+import us.nhstech.inventory.utils.*;
+
+import java.awt.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * @author James Sonne & Devin Matte

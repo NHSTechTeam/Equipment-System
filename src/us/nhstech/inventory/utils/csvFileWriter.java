@@ -13,12 +13,10 @@ import java.util.ArrayList;
 public class csvFileWriter {
     private static final String COMMA_SEPERATOR = ",";
     private static final String NEW_LINE = "\n";
-
-    // make arraylist
-    private static ArrayList<Item> items = new ArrayList<Item>();
-
     // file header
     private static final String FILE_HEADER = "Reference, name, availability, User, permission";
+    // make arraylist
+    private static ArrayList<Item> items = new ArrayList<Item>();
 
     /**
      * Gets the data that needs to be written

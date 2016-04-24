@@ -1,57 +1,56 @@
 package us.nhstech.inventory.utils;
 
 public class Log {
-	private int ref;
-	private String name, person , time, in;
-	
-	public Log(int ref, String name, String person, String time, String in){
-		this.ref = ref;
-		this.person = person;
-		this.name = name;
-		this.time = time;
-		this.in = in;
-	}
+    private int ref;
+    private String name, person, time, in;
 
-	public int getRef() {
-		return ref;
-	}
+    public Log(int ref, String name, String person, String time, String in) {
+        this.ref = ref;
+        this.person = person;
+        this.name = name;
+        this.time = time;
+        this.in = in;
+    }
 
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
+    public int getRef() {
+        return ref;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setRef(int ref) {
+        this.ref = ref;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPerson() {
-		return person;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPerson(String person) {
-		this.person = person;
-	}
+    public String getPerson() {
+        return person;
+    }
 
-	public String getTime() {
-		return time;
-	}
+    public void setPerson(String person) {
+        this.person = person;
+    }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public String getIn() {
-		return in;
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-	public void setIn(String in) {
-		this.in = in;
-	}
-	
-	
-	
+    public String getIn() {
+        return in;
+    }
+
+    public void setIn(String in) {
+        this.in = in;
+    }
+
+
 }
