@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,7 +24,6 @@ import us.nhstech.inventory.utils.csvFileWriter;
 import us.nhstech.inventory.utils.databaseManager;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -78,7 +78,7 @@ public class Main extends Application {
         table.setItems(UIManager.getItems(fileName, search.getText()));
         table.setMaxWidth(675);
         table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn(), UIManager.availableColumn(), UIManager.IDColumn(), UIManager.permColumn());
-        
+
         Button checkout = new Button("Checkout");
         checkout.setOnAction(e -> {
             CheckOut.checkOut(fileName, IDFileName, passFileName);

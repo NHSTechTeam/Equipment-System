@@ -22,16 +22,16 @@ public class databaseManager {
             return conn;
         } catch (Exception e) {
             System.out.println(e);
-        } return null;
+        }
+        return null;
     }
 
-    public static void add(int ref, String name, boolean avail, String user, Boolean perm){
-        try{
+    public static void add(int ref, String name, boolean avail, String user, Boolean perm) {
+        try {
             Connection conn = getConnection();
-            PreparedStatement add = conn.prepareStatement("INSERT INTO equipment (Reference, name, availability, User, permission) VALUES ('"+ref+"', '"+name+"', '"+avail+"', '"+user+"', '"+perm+"')");
+            PreparedStatement add = conn.prepareStatement("INSERT INTO equipment (Reference, name, availability, User, permission) VALUES ('" + ref + "', '" + name + "', '" + avail + "', '" + user + "', '" + perm + "')");
             add.executeUpdate();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

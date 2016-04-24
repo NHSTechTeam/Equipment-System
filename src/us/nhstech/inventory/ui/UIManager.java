@@ -24,7 +24,6 @@ import us.nhstech.inventory.utils.csvFileReader;
 import us.nhstech.inventory.utils.csvFileWriter;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -36,17 +35,12 @@ public class UIManager {
      * Window Basic is what sets up all the basic parameters of a UI window, and
      * off-loads the code to another class to save you space in the class you
      * store your windows.
-     * 
-     * @param window
-     *            Your window Stage. To help off-load any basic functions
-     * @param title
-     *            The title of the window and main label
-     * @param size
-     *            The minimum width and height of the window
-     * @param label
-     *            The main label for your window
-     * @param errors
-     *            Your error label. Sets the initial value to "" for you
+     *
+     * @param window Your window Stage. To help off-load any basic functions
+     * @param title  The title of the window and main label
+     * @param size   The minimum width and height of the window
+     * @param label  The main label for your window
+     * @param errors Your error label. Sets the initial value to "" for you
      */
     public static void windowBasic(Stage window, String title, int size, Label label, Label errors, Scene mainScene) {
         window.initModality(Modality.APPLICATION_MODAL);
@@ -62,13 +56,11 @@ public class UIManager {
     /**
      * Checks to see if the data input is a integer. If it is allows for it to
      * be parsed for use.
-     * 
-     * @param input
-     *            Input data input as a TextField
-     * @param message
-     *            Input data as a String
+     *
+     * @param input   Input data input as a TextField
+     * @param message Input data as a String
      * @return Returns either True or False based on whether or not the data is
-     *         an integer
+     * an integer
      */
     public static boolean isInt(TextField input, String message) {
         try {
@@ -84,12 +76,10 @@ public class UIManager {
     /**
      * Converts the {@link ArrayList} from the {@link csvFileReader} class into
      * an {@link ObservableList}
-     * 
-     * @param file
-     *            Links the main item File
-     * @param Search
-     *            The search query that will determine what data is returned to
-     *            the tables
+     *
+     * @param file   Links the main item File
+     * @param Search The search query that will determine what data is returned to
+     *               the tables
      * @return Returns the new ObservableList of Data
      */
     public static ObservableList<Item> getItems(String file, String Search) {
@@ -149,11 +139,9 @@ public class UIManager {
     /**
      * Deletes the selected file from the table. Takes the data in and removes
      * it from both the table and the file itself.
-     * 
-     * @param table
-     *            Import the table in which you need to delete an item from.
-     * @param file
-     *            Links the main item File
+     *
+     * @param table Import the table in which you need to delete an item from.
+     * @param file  Links the main item File
      */
     public static void deleteButtonClicked(TableView<Item> table, String file) {
         csvFileReader read = new csvFileReader();

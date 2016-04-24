@@ -1,9 +1,10 @@
 package us.nhstech.inventory.ui.executive;
 
 import javafx.geometry.Pos;
+
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,6 @@ import us.nhstech.inventory.ui.executive.legacy.Status;
 import us.nhstech.inventory.utils.csvFileReader;
 
 /**
- * 
  * @author James Sonne & Devin Matte
  * @version v0.5-Alpha
  * @since 2016-02-11
@@ -32,11 +32,9 @@ public class ExecutiveMain {
     /**
      * Window for all executive options. The basis for managing the system as a
      * whole.
-     * 
-     * @param file
-     *            Links the main item File
-     * @param passFile
-     *            Links to the password file
+     *
+     * @param file     Links the main item File
+     * @param passFile Links to the password file
      */
     public static void executive(String file, String passFile, String logFile, String IDFile) throws URISyntaxException {
         csvFileReader read = new csvFileReader();
