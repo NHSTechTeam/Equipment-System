@@ -98,10 +98,13 @@ public class Main extends Application {
         MenuBar menuBar = new MenuBar();
         Menu help = new Menu("_Help");
         MenuItem code = new MenuItem("View Code");
-        help.getItems().add(code);
+        MenuItem report = new MenuItem("Report a Bug");
+        help.getItems().addAll(code, report);
         menuBar.getMenus().addAll(help);
         URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
+        URI reportlink = new URI("https://github.com/NHSTechTeam/Equipment-System/issues");
         code.setOnAction(e -> UIManager.openWebpage(codelink));
+        report.setOnAction(e -> UIManager.openWebpage(reportlink));
 
         HBox menu = new HBox();
         menu.setPadding(new Insets(10, 10, 10, 10));
