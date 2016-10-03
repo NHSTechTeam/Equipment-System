@@ -13,9 +13,9 @@ public class LogManager {
         for (int i = 0; i < items.size(); i++) {
             String[] nameTimeStamp = items.get(i).getID().split(" - ");
             if (items.get(i).getAvailable()) {
-                inOut = "Checked out";
+                inOut = "Checked In";
             } else {
-                inOut = "Checked in";
+                inOut = "Checked Out";
             }
             list.add(new Log(items.get(i).getReference(), items.get(i)
                     .getName(), nameTimeStamp[0], nameTimeStamp[1], inOut));
