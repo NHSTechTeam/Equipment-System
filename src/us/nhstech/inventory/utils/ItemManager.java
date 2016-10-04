@@ -16,8 +16,8 @@ public class ItemManager {
      * Checkout an Item
      *
      * @param ref
-     * @param fileName
-     * @param passFile
+     * @param fileName The filename containing all item data
+     * @param passFile The password file, containing the password
      * @param member
      * @param ID
      * @param Pass

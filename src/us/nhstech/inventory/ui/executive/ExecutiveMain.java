@@ -42,23 +42,31 @@ public class ExecutiveMain {
 
         UIManager.windowBasic(window, "Executive Options", 250, label, errors, options);
 
-        // Legacy Options Menu
-        Menu legacy = new Menu("_Legacy");
+        // This creates and sets up all the menu bars on the top of the page
         MenuBar menu = new MenuBar();
+
+        //Menu Tabs
+        Menu legacy = new Menu("_Legacy");
+        Menu help = new Menu("_Help");
+        Menu settings = new Menu("_Settings");
+
+        //Menu Options
+        MenuItem clear = new MenuItem("Clear Registry");
+        MenuItem change = new MenuItem("Change Password");
         MenuItem register = new MenuItem("Register");
         MenuItem remove = new MenuItem("Remove");
         MenuItem show = new MenuItem("Show Status");
-        Menu settings = new Menu("_Settings");
-        MenuItem clear = new MenuItem("Clear Registry");
-        MenuItem change = new MenuItem("Change Password");
-        Menu help = new Menu("_Help");
         MenuItem code = new MenuItem("View Code");
+
+        //Menu Actions
         legacy.getItems().add(register);
         legacy.getItems().add(remove);
         legacy.getItems().add(show);
         settings.getItems().add(clear);
         settings.getItems().add(change);
         help.getItems().add(code);
+
+        //Collects Menus
         menu.getMenus().addAll(legacy, settings, help);
 
         // Options

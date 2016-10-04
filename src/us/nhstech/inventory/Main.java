@@ -37,12 +37,23 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
         try {
+            /*
+            This was a plan to begin storing all data on a database instead of locally.
+            It was abandoned upon realizing how inefficient that would be given NHS network
+            */
             databaseManager.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * The opening class. When the launch method is run, the code in here begins to execute.
+     * All code
+     *
+     * @param primaryStage The intial stage opened on run
+     * @throws Exception
+     */
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setMaximized(true);
@@ -85,8 +96,8 @@ public class Main extends Application {
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
-        Button checkin = new Button("Checkin");
-        checkin.setOnAction(e -> {
+        Button checkIn = new Button("Checkin");
+        checkIn.setOnAction(e -> {
             CheckIn.checkIn(fileName);
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
@@ -95,22 +106,41 @@ public class Main extends Application {
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
+        // This creates and sets up all the menu bars on the top of the page
         MenuBar menuBar = new MenuBar();
+
+        //Menu Tabs
         Menu help = new Menu("_Help");
-        MenuItem code = new MenuItem("View Code");
+        Menu exec = new Menu("_Executive Settings");
+        menuBar.getMenus().addAll(help, exec);
+
+        //Menu Items
+        MenuItem code = new MenuItem("View Code : GitHub");
         MenuItem report = new MenuItem("Report a Bug");
+        MenuItem openOptions = new MenuItem("Open Executive Options");
         help.getItems().addAll(code, report);
-        menuBar.getMenus().addAll(help);
-        URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
-        URI reportlink = new URI("https://github.com/NHSTechTeam/Equipment-System/issues");
-        code.setOnAction(e -> UIManager.openWebpage(codelink));
-        report.setOnAction(e -> UIManager.openWebpage(reportlink));
+        exec.getItems().addAll(openOptions);
+
+        //Menu External Links
+        URI codeLink = new URI("https://github.com/NHSTechTeam/Equipment-System");
+        URI reportLink = new URI("https://github.com/NHSTechTeam/Equipment-System/issues");
+
+        //Menu Actions
+        code.setOnAction(e -> UIManager.openWebpage(codeLink));
+        report.setOnAction(e -> UIManager.openWebpage(reportLink));
+        openOptions.setOnAction(e -> {
+            try {
+                ExecutiveMain.executive(fileName, passFileName, logFileName, IDFileName);
+            } catch (URISyntaxException e1) {
+                e1.printStackTrace();
+            }
+        });
 
         HBox menu = new HBox();
         menu.setPadding(new Insets(10, 10, 10, 10));
         menu.setSpacing(10);
         menu.setAlignment(Pos.CENTER);
-        menu.getChildren().addAll(checkout, checkin);
+        menu.getChildren().addAll(checkout, checkIn);
 
         executive.setOnAction(e -> {
             try {

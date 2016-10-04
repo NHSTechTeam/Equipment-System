@@ -6,6 +6,11 @@ public class LogManager {
 
     csvFileReader read = new csvFileReader();
 
+    /**
+     *
+     * @param fileName
+     * @return
+     */
     public ArrayList<Log> getList(String fileName) {
         ArrayList<Log> list = new ArrayList<Log>();
         ArrayList<Item> items = read.getData(fileName);
@@ -23,6 +28,12 @@ public class LogManager {
         return list;
     }
 
+    /**
+     *
+     * @param search
+     * @param fileName
+     * @return
+     */
     public ArrayList<Log> searchLog(String search, String fileName) {
         // get list of logs
         ArrayList<Log> list = this.getList(fileName);

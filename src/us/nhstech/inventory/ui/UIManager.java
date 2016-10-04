@@ -158,6 +158,10 @@ public class UIManager {
         write.writeCsvFile(file);
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Item, String> referenceColumn() {
         // reference column
         TableColumn<Item, String> referenceColumn = new TableColumn<>("Reference");
@@ -167,6 +171,10 @@ public class UIManager {
         return referenceColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Item, String> nameColumn() {
         // name column
         TableColumn<Item, String> nameColumn = new TableColumn<>("Item Name");
@@ -175,6 +183,10 @@ public class UIManager {
         return nameColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Item, String> availableColumn() {
         // available column
         TableColumn<Item, String> availableColumn = new TableColumn<>("Available");
@@ -183,6 +195,10 @@ public class UIManager {
         return availableColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Item, String> IDColumn() {
         // ID column
         TableColumn<Item, String> IDColumn = new TableColumn<>("Member");
@@ -191,6 +207,10 @@ public class UIManager {
         return IDColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Item, String> permColumn() {
         // Permission column
         TableColumn<Item, String> permColumn = new TableColumn<>("Permission");
@@ -201,6 +221,10 @@ public class UIManager {
 
     // Log Items
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Log, String> refColumn() {
         // Permission column
         TableColumn<Log, String> refColumn = new TableColumn<>("Reference");
@@ -209,6 +233,10 @@ public class UIManager {
         return refColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Log, String> personColumn() {
         // Permission column
         TableColumn<Log, String> personColumn = new TableColumn<>("Member");
@@ -217,6 +245,10 @@ public class UIManager {
         return personColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Log, String> nameColumnLog() {
         // Permission column
         TableColumn<Log, String> nameColumnLog = new TableColumn<>("Item Name");
@@ -225,6 +257,10 @@ public class UIManager {
         return nameColumnLog;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Log, String> timeColumn() {
         // Permission column
         TableColumn<Log, String> timeColumn = new TableColumn<>("Date & Time");
@@ -233,6 +269,10 @@ public class UIManager {
         return timeColumn;
     }
 
+    /**
+     *
+     * @return
+     */
     public static TableColumn<Log, String> inColumn() {
         // Permission column
         TableColumn<Log, String> inColumn = new TableColumn<>("In/Out");
