@@ -13,9 +13,10 @@ import us.nhstech.inventory.utils.ItemManager;
 
 /**
  * @author James Sonne & Devin Matte
- * @version v0.5-Alpha
+ * @version v0.1-Beta
  * @since 2016-02-11
  */
+
 public class CheckIn {
 
     /**

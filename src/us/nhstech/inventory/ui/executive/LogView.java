@@ -14,9 +14,10 @@ import us.nhstech.inventory.utils.Log;
 
 /**
  * @author James Sonne & Devin Matte
- * @version v0.5-Alpha
+ * @version v0.1-Beta
  * @since 2016-02-11
  */
+
 public class LogView {
     /**
      * View the Log of checkouts/checkins. One note is if an item was checked

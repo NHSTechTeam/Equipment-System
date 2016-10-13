@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * @author James Sonne & Devin Matte
- * @version v0.5-Alpha
+ * @version v0.1-Beta
  * @since 2016-02-11
  */
 
@@ -159,7 +159,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Item, String> referenceColumn() {
@@ -172,7 +171,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Item, String> nameColumn() {
@@ -184,7 +182,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Item, String> availableColumn() {
@@ -196,7 +193,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Item, String> IDColumn() {
@@ -208,7 +204,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Item, String> permColumn() {
@@ -222,7 +217,6 @@ public class UIManager {
     // Log Items
 
     /**
-     *
      * @return
      */
     public static TableColumn<Log, String> refColumn() {
@@ -234,7 +228,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Log, String> personColumn() {
@@ -246,7 +239,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Log, String> nameColumnLog() {
@@ -258,7 +250,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Log, String> timeColumn() {
@@ -270,7 +261,6 @@ public class UIManager {
     }
 
     /**
-     *
      * @return
      */
     public static TableColumn<Log, String> inColumn() {

@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 /**
- * Created by Devin on 4/9/2016.
+ * @author James Sonne & Devin Matte
+ * @version v0.1-Beta
+ * @since 2016-02-11
  */
+
 public class databaseManager {
     public static boolean syncing = false;
 

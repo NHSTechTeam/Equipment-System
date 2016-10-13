@@ -2,12 +2,17 @@ package us.nhstech.inventory.utils;
 
 import java.util.ArrayList;
 
+/**
+ * @author James Sonne & Devin Matte
+ * @version v0.1-Beta
+ * @since 2016-02-11
+ */
+
 public class LogManager {
 
     csvFileReader read = new csvFileReader();
 
     /**
-     *
      * @param fileName
      * @return
      */
@@ -29,7 +34,6 @@ public class LogManager {
     }
 
     /**
-     *
      * @param search
      * @param fileName
      * @return

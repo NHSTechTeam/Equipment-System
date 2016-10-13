@@ -1,5 +1,11 @@
 package us.nhstech.inventory.utils;
 
+/**
+ * @author James Sonne & Devin Matte
+ * @version v0.1-Beta
+ * @since 2016-02-11
+ */
+
 public class Log {
     private int ref;
     private String name, person, time, in;
