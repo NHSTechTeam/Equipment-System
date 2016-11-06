@@ -25,7 +25,8 @@ public class LogView {
      *
      * @param log
      */
-    public static void log(String log) {
+    @SuppressWarnings("unchecked")
+	public static void log(String log) {
         ItemManager manage = new ItemManager();
         Label errors = new Label();
         Stage window = new Stage();

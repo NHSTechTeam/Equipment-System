@@ -23,7 +23,8 @@ import java.util.Scanner;
  */
 
 public class Members {
-    public static void memberManager(String file) {
+    @SuppressWarnings("unchecked")
+	public static void memberManager(String file) {
         ItemManager manage = new ItemManager();
         Label errors = new Label();
         Stage window = new Stage();

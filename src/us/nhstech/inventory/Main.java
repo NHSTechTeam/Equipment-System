@@ -54,7 +54,8 @@ public class Main extends Application {
      * @param primaryStage The intial stage opened on run
      * @throws Exception
      */
-    public void start(Stage primaryStage) throws Exception {
+    @SuppressWarnings("unchecked")
+	public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setMaximized(true);
         window.setTitle("Equipment Manager");
