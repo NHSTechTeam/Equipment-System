@@ -16,7 +16,6 @@ import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
-import us.nhstech.inventory.utils.databaseManager;
 
 import java.io.File;
 import java.net.URI;
@@ -36,15 +35,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        try {
-            /*
-            This was a plan to begin storing all data on a database instead of locally.
-            It was abandoned upon realizing how inefficient that would be given NHS network
-            */
-            databaseManager.getConnection();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
