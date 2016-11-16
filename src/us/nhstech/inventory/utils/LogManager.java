@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class LogManager {
 
-    csvFileReader read = new csvFileReader();
+    private final csvFileReader read = new csvFileReader();
 
     /**
      * @param fileName

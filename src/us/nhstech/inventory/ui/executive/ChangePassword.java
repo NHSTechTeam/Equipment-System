@@ -16,14 +16,13 @@ import us.nhstech.inventory.utils.csvFileWriter;
  * @since 2016-02-11
  */
 
-public class ChangePassword {
+class ChangePassword {
     /**
      * Change the Executive Password
      *
-     * @param file     Links the main item File
      * @param passFile Links to the password file
      */
-    public static void changePass(String file, String passFile) {
+    public static void changePass(String passFile) {
         csvFileWriter write = new csvFileWriter();
         Label errors = new Label();
         Stage window = new Stage();

@@ -22,7 +22,7 @@ import java.util.Scanner;
  * @since 2016-02-11
  */
 
-public class Members {
+class Members {
     @SuppressWarnings("unchecked")
 	public static void memberManager(String file) {
         ItemManager manage = new ItemManager();

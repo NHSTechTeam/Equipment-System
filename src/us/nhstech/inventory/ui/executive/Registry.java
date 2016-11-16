@@ -19,7 +19,7 @@ import java.util.Scanner;
  * @since 2016-02-11
  */
 
-public class Registry {
+class Registry {
     /**
      * Manage the Item Registry
      *

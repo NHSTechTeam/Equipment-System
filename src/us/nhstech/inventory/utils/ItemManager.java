@@ -41,7 +41,7 @@ public class ItemManager {
         ArrayList<Item> items = read.getData(fileName);
         // check for permission
         String pass = (read.getItem(1000, passFile)).getName();
-        if (((items.get(pos).getPermission() != true) && (Pass == "")) || (Pass.equals(pass))) {
+        if (((!items.get(pos).getPermission()) && (Pass == "")) || (Pass.equals(pass))) {
 
             // checkout item
             boolean checked = (items.get(pos)).checkOut(name);
@@ -66,7 +66,7 @@ public class ItemManager {
     }
 
 
-    public void log(Item item, String name) {
+    private void log(Item item, String name) {
         //make reader and writer
         csvFileReader read = new csvFileReader();
         csvFileWriter write = new csvFileWriter();

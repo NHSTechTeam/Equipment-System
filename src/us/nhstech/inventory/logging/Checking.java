@@ -15,8 +15,8 @@ import us.nhstech.inventory.utils.csvFileReader;
 
 public class Checking {
 
-	private static ItemManager manage = new ItemManager();
-	private static Label errors = new Label();
+	private static final ItemManager manage = new ItemManager();
+	private static final Label errors = new Label();
 	private static int checkoutItemInput, checkoutIDInput;
 
 	/**
@@ -132,7 +132,7 @@ public class Checking {
 	 * @param IDfile
 	 *            Links the Memberlist File
 	 */
-	public static void checkoutID(String file, String IDfile, String passfile) {
+	private static void checkoutID(String file, String IDfile, String passfile) {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);
@@ -196,7 +196,7 @@ public class Checking {
 	 * @param IDfile
 	 * @param passfile
 	 */
-	public static void checkoutConfirm(String file, String IDfile, String passfile) {
+	private static void checkoutConfirm(String file, String IDfile, String passfile) {
 		Stage window = new Stage();
 		VBox checkoutLayout = new VBox(10);
 		Scene checkout = new Scene(checkoutLayout);

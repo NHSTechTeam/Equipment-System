@@ -1,20 +1,10 @@
 package us.nhstech.inventory;
 
-import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +15,10 @@ import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 /**
  * @author James Sonne & Devin Matte
@@ -34,8 +28,7 @@ import us.nhstech.inventory.utils.csvFileWriter;
 
 public class Main extends Application {
 
-    private ItemManager manage = new ItemManager();
-    private Stage window;
+    private final ItemManager manage = new ItemManager();
 
     public static void main(String[] args) {
         launch(args);
@@ -50,9 +43,8 @@ public class Main extends Application {
      */
     @SuppressWarnings("unchecked")
 	public void start(Stage primaryStage) throws Exception {
-        window = primaryStage;
-        window.setMaximized(true);
-        window.setTitle("Equipment Manager");
+        primaryStage.setMaximized(true);
+        primaryStage.setTitle("Equipment Manager");
         Button executive = new Button("Executive Options");
         TextField search = new TextField();
         search.setPromptText("Search");
@@ -153,7 +145,7 @@ public class Main extends Application {
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(borderLayout, 300, 250);
         scene.getStylesheets().add("style.css");
-        window.setScene(scene);
-        window.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

@@ -16,7 +16,7 @@ import us.nhstech.inventory.utils.ItemManager;
  * @since 2016-02-11
  */
 
-public class ClearRegistry {
+class ClearRegistry {
     /**
      * Clear the Item Registry
      *

@@ -18,7 +18,7 @@ import us.nhstech.inventory.utils.Log;
  * @since 2016-02-11
  */
 
-public class LogView {
+class LogView {
     /**
      * View the Log of checkouts/checkins. One note is if an item was checked
      * in, it will read true, and checked out will read false
