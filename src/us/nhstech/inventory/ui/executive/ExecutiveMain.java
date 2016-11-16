@@ -57,14 +57,12 @@ public class ExecutiveMain {
         MenuItem remove = new MenuItem("Remove");
         MenuItem show = new MenuItem("Show Status");
         MenuItem code = new MenuItem("View Code");
+        MenuItem report = new MenuItem("Report a Bug");
 
         //Menu Actions
-        legacy.getItems().add(register);
-        legacy.getItems().add(remove);
-        legacy.getItems().add(show);
-        settings.getItems().add(clear);
-        settings.getItems().add(change);
-        help.getItems().add(code);
+        legacy.getItems().addAll(register, remove, show);
+        settings.getItems().addAll(clear, change);
+        help.getItems().addAll(code, report);
 
         //Collects Menus
         menu.getMenus().addAll(legacy, settings, help);
@@ -81,8 +79,10 @@ public class ExecutiveMain {
         log.setOnAction(e -> LogView.log(logFile));
         clear.setOnAction(e -> ClearRegistry.clear(file));
         change.setOnAction(e -> ChangePassword.changePass(passFile));
-        URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
-        code.setOnAction(e -> UIManager.openWebpage(codelink));
+        URI codeLink = new URI("https://github.com/NHSTechTeam/Equipment-System");
+        URI reportLink = new URI("https://github.com/NHSTechTeam/Equipment-System/issues");
+        code.setOnAction(e -> UIManager.openWebpage(codeLink));
+        report.setOnAction(e -> UIManager.openWebpage(reportLink));
 
         // Password
         String pass = (read.getItem(1000, passFile)).getName();

@@ -102,7 +102,7 @@ public class Main extends Application {
         menuBar.getMenus().addAll(help, exec);
 
         //Menu Items
-        MenuItem code = new MenuItem("View Code : GitHub");
+        MenuItem code = new MenuItem("View Code");
         MenuItem report = new MenuItem("Report a Bug");
         MenuItem openOptions = new MenuItem("Open Executive Options");
         help.getItems().addAll(code, report);
