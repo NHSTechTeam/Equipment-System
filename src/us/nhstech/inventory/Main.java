@@ -1,26 +1,30 @@
 package us.nhstech.inventory;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import us.nhstech.inventory.logging.CheckIn;
-import us.nhstech.inventory.logging.CheckOut;
+import us.nhstech.inventory.logging.Checking;
 import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
-
-import java.io.File;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 /**
  * @author James Sonne & Devin Matte
@@ -44,7 +48,8 @@ public class Main extends Application {
      * @param primaryStage The intial stage opened on run
      * @throws Exception
      */
-    public void start(Stage primaryStage) throws Exception {
+    @SuppressWarnings("unchecked")
+	public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setMaximized(true);
         window.setTitle("Equipment Manager");
@@ -82,13 +87,13 @@ public class Main extends Application {
 
         Button checkout = new Button("Checkout");
         checkout.setOnAction(e -> {
-            CheckOut.checkOut(fileName, IDFileName, passFileName);
+            Checking.checkOut(fileName, IDFileName, passFileName);
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
         Button checkIn = new Button("Checkin");
         checkIn.setOnAction(e -> {
-            CheckIn.checkIn(fileName);
+            Checking.checkIn(fileName);
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
