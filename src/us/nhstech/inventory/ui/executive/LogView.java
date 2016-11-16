@@ -46,9 +46,7 @@ class LogView {
         table.setMaxWidth(675);
         table.getColumns().addAll(UIManager.refColumn(), UIManager.nameColumnLog(), UIManager.inColumn(), UIManager.personColumn(), UIManager.timeColumn());
 
-        search.setOnKeyPressed(e -> {
-            table.setItems(UIManager.getLog(log, search.getText()));
-        });
+        search.setOnKeyPressed(e -> table.setItems(UIManager.getLog(log, search.getText())));
 
         Button logBack = new Button("Back");
         logBack.setOnAction(e -> {

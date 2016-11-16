@@ -83,13 +83,13 @@ public class UIManager {
         ItemManager manage = new ItemManager();
         if (Search.equals("")) {
             ArrayList<Item> list = read.getData(file);
-            for (int i = 0; i < list.size(); i++) {
-                items.add(list.get(i));
+            for (Item aList : list) {
+                items.add(aList);
             }
         } else {
             ArrayList<Item> list = manage.searchFor(file, Search);
-            for (int i = 0; i < list.size(); i++) {
-                items.add(list.get(i));
+            for (Item aList : list) {
+                items.add(aList);
             }
         }
         return items;
@@ -100,13 +100,13 @@ public class UIManager {
         LogManager manage = new LogManager();
         if (Search.equals("")) {
             ArrayList<Log> list = manage.getList(log);
-            for (int i = 0; i < list.size(); i++) {
-                logs.add(0, list.get(i));
+            for (Log aList : list) {
+                logs.add(0, aList);
             }
         } else {
             ArrayList<Log> list = manage.searchLog(Search, log);
-            for (int i = 0; i < list.size(); i++) {
-                logs.add(0, list.get(i));
+            for (Log aList : list) {
+                logs.add(0, aList);
             }
         }
         return logs;
@@ -149,8 +149,8 @@ public class UIManager {
         // create array
         ArrayList<Item> items = read.getData(file);
         items.clear();
-        for (int i = 0; i < allProducts.size(); i++) {
-            items.add(allProducts.get(i));
+        for (Item allProduct : allProducts) {
+            items.add(allProduct);
         }
 
         // rewrite file

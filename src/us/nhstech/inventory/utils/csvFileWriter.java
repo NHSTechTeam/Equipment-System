@@ -16,7 +16,7 @@ public class csvFileWriter {
     // file header
     private static final String FILE_HEADER = "Reference, name, availability, User, permission";
     // make arraylist
-    private static ArrayList<Item> items = new ArrayList<Item>();
+    private static ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Gets the data that needs to be written
@@ -49,21 +49,21 @@ public class csvFileWriter {
             fileWriter = new FileWriter(filename);
 
             // add header
-            fileWriter.append(FILE_HEADER.toString());
+            fileWriter.append(FILE_HEADER);
             fileWriter.append(NEW_LINE);
 
-            for (int i = 0; i < items.size(); i++) {
+            for (Item item : items) {
                 // add data as a list of variables in string form separated by a
                 // comma
-                fileWriter.append(String.valueOf((items.get(i)).getReference()));
+                fileWriter.append(String.valueOf(item.getReference()));
                 fileWriter.append(COMMA_SEPERATOR);
-                fileWriter.append((items.get(i)).getName());
+                fileWriter.append(item.getName());
                 fileWriter.append(COMMA_SEPERATOR);
-                fileWriter.append(String.valueOf((items.get(i)).getAvailable()));
+                fileWriter.append(String.valueOf(item.getAvailable()));
                 fileWriter.append(COMMA_SEPERATOR);
-                fileWriter.append((items.get(i)).getID());
+                fileWriter.append(item.getID());
                 fileWriter.append(COMMA_SEPERATOR);
-                fileWriter.append(String.valueOf((items.get(i)).getPermission()));
+                fileWriter.append(String.valueOf(item.getPermission()));
                 fileWriter.append(NEW_LINE);
             }
 

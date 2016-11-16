@@ -62,7 +62,7 @@ public class Main extends Application {
             write.writeCsvFile(logFileName);
             write.writeCsvFile(fileName);
             write.writeCsvFile(IDFileName);
-            ArrayList<Item> list = new ArrayList<Item>();
+            ArrayList<Item> list = new ArrayList<>();
             list.add(new Item(1000, "password", true, "none", false));
             write.enterData(list);
             write.writeCsvFile(passFileName);
@@ -89,9 +89,7 @@ public class Main extends Application {
             table.setItems(UIManager.getItems(fileName, search.getText()));
         });
 
-        search.setOnKeyPressed(e -> {
-            table.setItems(UIManager.getItems(fileName, search.getText()));
-        });
+        search.setOnKeyPressed(e -> table.setItems(UIManager.getItems(fileName, search.getText())));
 
         // This creates and sets up all the menu bars on the top of the page
         MenuBar menuBar = new MenuBar();

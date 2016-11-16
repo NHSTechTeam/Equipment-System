@@ -29,9 +29,9 @@ public class csvFileReader {
      */
     public String printFile(String fileName) {
         // create reader and strings
-        BufferedReader fileReader = null;
+        BufferedReader fileReader;
         String out = "";
-        String line = "";
+        String line;
         try {
             // set reader
             fileReader = new BufferedReader(new FileReader(fileName));
@@ -62,7 +62,7 @@ public class csvFileReader {
     public int checkPosition(int ref, String fileName) {
         // initialize reader and string
         BufferedReader fileReader = null;
-        String line = "";
+        String line;
 
         try {
             // set reader
@@ -93,8 +93,6 @@ public class csvFileReader {
             } catch (Exception e) {
                 System.out.println("Error closing file while finding position");
                 e.printStackTrace();
-            } finally {
-
             }
         }
         // return should an error occur
@@ -113,10 +111,10 @@ public class csvFileReader {
         ArrayList<Item> items = null;
         try {
             // initialize Arraylist
-            items = new ArrayList<Item>();
+            items = new ArrayList<>();
 
             // initialize string
-            String line = "";
+            String line;
             // initialize reader
             fileReader = new BufferedReader(new FileReader(fileName));
 
@@ -151,7 +149,6 @@ public class csvFileReader {
             } catch (final Exception e) {
                 System.out.println("Error closing reader");
                 e.printStackTrace();
-            } finally {
             }
         }
         // return list of items
@@ -172,7 +169,7 @@ public class csvFileReader {
             Item read = null;
 
             // initialize string
-            String line = "";
+            String line;
 
             // initialize reader
             fileReader = new BufferedReader(new FileReader(fileName));

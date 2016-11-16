@@ -57,13 +57,9 @@ class Members {
         table.getColumns().addAll(UIManager.referenceColumn(), UIManager.nameColumn());
 
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(e -> {
-            UIManager.deleteButtonClicked(table, file);
-        });
+        deleteButton.setOnAction(e -> UIManager.deleteButtonClicked(table, file));
 
-        search.setOnKeyPressed(e -> {
-            table.setItems(UIManager.getItems(file, search.getText()));
-        });
+        search.setOnKeyPressed(e -> table.setItems(UIManager.getItems(file, search.getText())));
 
         // Button
         Button addButton = new Button("Add");

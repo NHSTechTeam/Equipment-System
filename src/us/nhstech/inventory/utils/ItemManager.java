@@ -75,7 +75,7 @@ public class ItemManager {
         String logFileName = System.getProperty("user.home") + "/Log.csv";
 
         //get data
-        ArrayList<Item> list = new ArrayList<Item>();
+        ArrayList<Item> list;
         list = read.getData(logFileName);
 
         //get date
@@ -97,7 +97,7 @@ public class ItemManager {
      */
     public void clearFile(String fileName) {
         csvFileWriter write = new csvFileWriter();
-        ArrayList<Item> list = new ArrayList<Item>();
+        ArrayList<Item> list = new ArrayList<>();
 
         // enter empy data
         write.enterData(list);
@@ -217,8 +217,8 @@ public class ItemManager {
      * @param list
      */
     public void printList(ArrayList<Item> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("\n" + list.get(i).toString());
+        for (Item aList : list) {
+            System.out.println("\n" + aList.toString());
         }
     }
 
@@ -235,9 +235,9 @@ public class ItemManager {
         csvFileReader read = new csvFileReader();
 
         // create arraylists
-        ArrayList<String> keyword = new ArrayList<String>();
+        ArrayList<String> keyword = new ArrayList<>();
         ArrayList<Item> info = read.getData(fileName);
-        ArrayList<Item> returned = new ArrayList<Item>();
+        ArrayList<Item> returned = new ArrayList<>();
 
         // add the whole string as a keyword, covers for one word searches
         keyword.add(search);
@@ -252,10 +252,10 @@ public class ItemManager {
         keyword.add(search);
 
         // check if each item name contains each keyword
-        for (int i = 0; i < info.size(); i++) {
-            for (int e = 0; e < keyword.size(); e++) {
-                if (info.get(i).getName().toLowerCase().contains(keyword.get(e).toLowerCase())) {
-                    returned.add(info.get(i));
+        for (Item anInfo : info) {
+            for (String aKeyword : keyword) {
+                if (anInfo.getName().toLowerCase().contains(aKeyword.toLowerCase())) {
+                    returned.add(anInfo);
                     // prevent items from being added twice for containing two
                     // keywords
                     break;

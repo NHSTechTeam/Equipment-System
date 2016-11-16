@@ -80,7 +80,7 @@ public class ExecutiveMain {
         Button log = new Button("Checkout Log");
         log.setOnAction(e -> LogView.log(logFile));
         clear.setOnAction(e -> ClearRegistry.clear(file));
-        change.setOnAction(e -> ChangePassword.changePass(file, passFile));
+        change.setOnAction(e -> ChangePassword.changePass(passFile));
         URI codelink = new URI("https://github.com/NHSTechTeam/Equipment-System");
         code.setOnAction(e -> UIManager.openWebpage(codelink));
 

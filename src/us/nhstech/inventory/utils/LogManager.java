@@ -17,17 +17,17 @@ public class LogManager {
      * @return
      */
     public ArrayList<Log> getList(String fileName) {
-        ArrayList<Log> list = new ArrayList<Log>();
+        ArrayList<Log> list = new ArrayList<>();
         ArrayList<Item> items = read.getData(fileName);
         String inOut;
-        for (int i = 0; i < items.size(); i++) {
-            String[] nameTimeStamp = items.get(i).getID().split(" - ");
-            if (items.get(i).getAvailable()) {
+        for (Item item : items) {
+            String[] nameTimeStamp = item.getID().split(" - ");
+            if (item.getAvailable()) {
                 inOut = "Checked In";
             } else {
                 inOut = "Checked Out";
             }
-            list.add(new Log(items.get(i).getReference(), items.get(i)
+            list.add(new Log(item.getReference(), item
                     .getName(), nameTimeStamp[0], nameTimeStamp[1], inOut));
         }
         return list;
@@ -43,10 +43,10 @@ public class LogManager {
         ArrayList<Log> list = this.getList(fileName);
 
         // make list to be returned
-        ArrayList<Log> returned = new ArrayList<Log>();
+        ArrayList<Log> returned = new ArrayList<>();
 
         // make string arraylist
-        ArrayList<String> keyword = new ArrayList<String>();
+        ArrayList<String> keyword = new ArrayList<>();
 
         // add the whole string as a keyword, covers for one word searches
         keyword.add(search);
@@ -61,11 +61,11 @@ public class LogManager {
         keyword.add(search);
 
         // check if each item name contains each keyword
-        for (int i = 0; i < list.size(); i++) {
-            for (int e = 0; e < keyword.size(); e++) {
-                if (list.get(i).getName().toLowerCase()
-                        .contains(keyword.get(e).toLowerCase())) {
-                    returned.add(list.get(i));
+        for (Log aList : list) {
+            for (String aKeyword : keyword) {
+                if (aList.getName().toLowerCase()
+                        .contains(aKeyword.toLowerCase())) {
+                    returned.add(aList);
                     // prevent items from being added twice for containing two
                     // keywords
                     break;
