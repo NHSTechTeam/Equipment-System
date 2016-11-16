@@ -44,6 +44,7 @@ public class UIManager {
         window.setMinHeight(size);
         window.setOnCloseRequest(e -> window.close());
         mainScene.getStylesheets().add("style.css");
+        window.getIcons().add(new javafx.scene.image.Image("images/icon.png"));
         label.setText(title);
         errors.setText("");
     }

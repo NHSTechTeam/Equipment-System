@@ -15,235 +15,234 @@ import us.nhstech.inventory.utils.csvFileReader;
 
 public class Checking {
 
-	private static final ItemManager manage = new ItemManager();
-	private static final Label errors = new Label();
-	private static int checkoutItemInput, checkoutIDInput;
+    private static final ItemManager manage = new ItemManager();
+    private static final Label errors = new Label();
+    private static int checkoutItemInput, checkoutIDInput;
 
-	/**
-	 * Check-In Window
-	 *
-	 * @param file
-	 *            Links the main item File
-	 */
-	public static void checkIn(String file) {
-		Stage window = new Stage();
-		VBox checkinLayout = new VBox(10);
-		Scene checkin = new Scene(checkinLayout);
-		Label label = new Label();
-	
-		UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors, checkin);
-	
-		TextField itemInput = new TextField();
-		itemInput.setPromptText("Item Barcode");
-	
-		Button button = new Button("Check In");
-		button.setOnAction(e -> {
-			errors.setText("");
-			if (UIManager.isInt(itemInput, itemInput.getText())) {
-				manage.checkIn(Integer.parseInt(itemInput.getText()), file);
-				itemInput.clear();
-				window.close();
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				itemInput.clear();
-			}
-		});
-		itemInput.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.ENTER)) {
-				if (UIManager.isInt(itemInput, itemInput.getText())) {
-					manage.checkIn(Integer.parseInt(itemInput.getText()), file);
-					itemInput.clear();
-					window.close();
-				} else {
-					errors.setText("Something Went Wrong. Try Again");
-					itemInput.clear();
-				}
-			}
-		});
-	
-		checkinLayout.getChildren().addAll(label, errors, itemInput, button);
-		checkinLayout.setAlignment(Pos.CENTER);
-	
-		// Display window and wait for it to be closed before returning
-		window.setScene(checkin);
-		window.showAndWait();
-	}
+    /**
+     * Check-In Window
+     *
+     * @param file Links the main item File
+     */
+    public static void checkIn(String file) {
+        Stage window = new Stage();
+        VBox checkinLayout = new VBox(10);
+        Scene checkin = new Scene(checkinLayout);
+        Label label = new Label();
 
-	/**
-	 * Checkout Window
-	 *
-	 * @param file
-	 *            Links the main item File
-	 * @param IDfile
-	 *            Links the Memberlist File
-	 */
-	public static void checkOut(String file, String IDfile, String passfile) {
-		Stage window = new Stage();
-		VBox checkoutLayout = new VBox(10);
-		Scene checkout = new Scene(checkoutLayout);
-		Label label = new Label();
+        UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors, checkin);
 
-		UIManager.windowBasic(window, "Equipment Checkout Item", 250, label, errors, checkout);
+        TextField itemInput = new TextField();
+        itemInput.setPromptText("Item Barcode");
 
-		TextField itemInput = new TextField();
-		itemInput.setPromptText("Item Barcode");
+        Button button = new Button("Check In");
+        button.setOnAction(e -> {
+            checkinAction(itemInput, file, window);
+        });
+        itemInput.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                checkinAction(itemInput, file, window);
+            }
+        });
 
-		Button button = new Button("Next Step");
-		button.setOnAction(e -> {
-			errors.setText("");
-			if (UIManager.isInt(itemInput, itemInput.getText())) {
-				checkoutItemInput = Integer.parseInt(itemInput.getText());
-				itemInput.clear();
-				checkoutID(file, IDfile, passfile);
-				window.close();
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				itemInput.clear();
-			}
-		});
-		itemInput.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.ENTER)) {
-				errors.setText("");
-				if (UIManager.isInt(itemInput, itemInput.getText())) {
-					checkoutItemInput = Integer.parseInt(itemInput.getText());
-					itemInput.clear();
-					checkoutID(file, IDfile, passfile);
-					window.close();
-				} else {
-					errors.setText("Something Went Wrong. Try Again");
-					itemInput.clear();
-				}
-			}
-		});
+        checkinLayout.getChildren().addAll(label, errors, itemInput, button);
+        checkinLayout.setAlignment(Pos.CENTER);
 
-		checkoutLayout.getChildren().addAll(label, errors, itemInput, button);
-		checkoutLayout.setAlignment(Pos.CENTER);
+        // Display window and wait for it to be closed before returning
+        window.setScene(checkin);
+        window.showAndWait();
+    }
 
-		// Display window and wait for it to be closed before returning
-		window.setScene(checkout);
-		window.showAndWait();
-	}
+    /**
+     * @param itemInput
+     * @param file
+     * @param window
+     */
+    private static void checkinAction(TextField itemInput, String file, Stage window) {
+        errors.setText("");
+        if (UIManager.isInt(itemInput, itemInput.getText())) {
+            manage.checkIn(Integer.parseInt(itemInput.getText()), file);
+            itemInput.clear();
+            window.close();
+        } else {
+            errors.setText("Something Went Wrong. Try Again");
+            itemInput.clear();
+        }
+    }
 
-	/**
-	 * CheckoutID Window
-	 *
-	 * @param file
-	 *            Links the main item File
-	 * @param IDfile
-	 *            Links the Memberlist File
-	 */
-	private static void checkoutID(String file, String IDfile, String passfile) {
-		Stage window = new Stage();
-		VBox checkoutLayout = new VBox(10);
-		Scene checkout = new Scene(checkoutLayout);
-		Label label = new Label();
+    /**
+     * Checkout Window
+     *
+     * @param file   Links the main item File
+     * @param IDfile Links the Memberlist File
+     */
+    public static void checkOut(String file, String IDfile, String passfile) {
+        Stage window = new Stage();
+        VBox checkoutLayout = new VBox(10);
+        Scene checkout = new Scene(checkoutLayout);
+        Label label = new Label();
 
-		UIManager.windowBasic(window, "Equipment Checkout Member ID", 250, label, errors, checkout);
+        UIManager.windowBasic(window, "Equipment Checkout Item", 250, label, errors, checkout);
 
-		TextField IDInput = new TextField();
-		IDInput.setPromptText("Member ID");
+        TextField itemInput = new TextField();
+        itemInput.setPromptText("Item Barcode");
 
-		Button button = new Button("Check Out");
-		button.setOnAction(e -> {
-			errors.setText("");
-			if (UIManager.isInt(IDInput, IDInput.getText())) {
-				checkoutIDInput = Integer.parseInt(IDInput.getText());
-				if (Boolean.parseBoolean(
-						manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
-					IDInput.clear();
-					window.close();
-				} else {
-					checkoutConfirm(file, IDfile, passfile);
-					window.close();
-				}
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				IDInput.clear();
-			}
-		});
-		IDInput.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.ENTER)) {
-				errors.setText("");
-				if (UIManager.isInt(IDInput, IDInput.getText())) {
-					checkoutIDInput = Integer.parseInt(IDInput.getText());
-					if (Boolean.parseBoolean(
-							manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
-						IDInput.clear();
-						window.close();
-					} else {
-						checkoutConfirm(file, IDfile, passfile);
-						window.close();
-					}
-				} else {
-					errors.setText("Something Went Wrong. Try Again");
-					IDInput.clear();
-				}
-			}
-		});
+        Button button = new Button("Next Step");
+        button.setOnAction(e -> {
+            checkoutAction(itemInput, file, IDfile, passfile, window);
+        });
+        itemInput.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                checkoutAction(itemInput, file, IDfile, passfile, window);
+            }
+        });
 
-		checkoutLayout.getChildren().addAll(label, errors, IDInput, button);
-		checkoutLayout.setAlignment(Pos.CENTER);
+        checkoutLayout.getChildren().addAll(label, errors, itemInput, button);
+        checkoutLayout.setAlignment(Pos.CENTER);
 
-		// Display window and wait for it to be closed before returning
-		window.setScene(checkout);
-		window.showAndWait();
-	}
+        // Display window and wait for it to be closed before returning
+        window.setScene(checkout);
+        window.showAndWait();
+    }
 
-	/**
-	 * Checkout Confirm. Confirms password on items that require it for checkout
-	 *
-	 * @param file
-	 * @param IDfile
-	 * @param passfile
-	 */
-	private static void checkoutConfirm(String file, String IDfile, String passfile) {
-		Stage window = new Stage();
-		VBox checkoutLayout = new VBox(10);
-		Scene checkout = new Scene(checkoutLayout);
-		Label label = new Label();
-		csvFileReader read = new csvFileReader();
+    /**
+     * @param itemInput
+     * @param file
+     * @param IDfile
+     * @param passfile
+     * @param window
+     */
+    private static void checkoutAction(TextField itemInput, String file, String IDfile, String passfile, Stage window) {
+        errors.setText("");
+        if (UIManager.isInt(itemInput, itemInput.getText())) {
+            checkoutItemInput = Integer.parseInt(itemInput.getText());
+            itemInput.clear();
+            checkoutID(file, IDfile, passfile);
+            window.close();
+        } else {
+            errors.setText("Something Went Wrong. Try Again");
+            itemInput.clear();
+        }
+    }
 
-		UIManager.windowBasic(window, "Equipment Checkout Confirmation", 250, label, errors, checkout);
+    /**
+     * CheckoutID Window
+     *
+     * @param file   Links the main item File
+     * @param IDfile Links the Memberlist File
+     */
+    private static void checkoutID(String file, String IDfile, String passfile) {
+        Stage window = new Stage();
+        VBox checkoutLayout = new VBox(10);
+        Scene checkout = new Scene(checkoutLayout);
+        Label label = new Label();
 
-		PasswordField passInput = new PasswordField();
-		passInput.setPromptText("Password");
-		String pass = (read.getItem(1000, passfile)).getName();
+        UIManager.windowBasic(window, "Equipment Checkout Member ID", 250, label, errors, checkout);
 
-		Button button = new Button("Check Out");
-		button.setOnAction(e -> {
-			errors.setText("");
-			if (pass.equals(passInput.getText())) {
-				if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
-						passInput.getText())[0])) {
-					window.close();
-					passInput.clear();
-				}
-			} else {
-				errors.setText("Something Went Wrong. Try Again");
-				passInput.clear();
-			}
-		});
-		passInput.setOnKeyPressed(e -> {
-			if (e.getCode().equals(KeyCode.ENTER)) {
-				errors.setText("");
-				if (pass.equals(passInput.getText())) {
-					if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
-							passInput.getText())[0])) {
-						passInput.clear();
-						window.close();
-					}
-				} else {
-					errors.setText("Something Went Wrong. Try Again");
-					passInput.clear();
-				}
-			}
-		});
+        TextField IDInput = new TextField();
+        IDInput.setPromptText("Member ID");
 
-		checkoutLayout.getChildren().addAll(label, errors, passInput, button);
-		checkoutLayout.setAlignment(Pos.CENTER);
+        Button button = new Button("Check Out");
+        button.setOnAction(e -> {
+            errors.setText("");
+            if (UIManager.isInt(IDInput, IDInput.getText())) {
+                checkoutIDInput = Integer.parseInt(IDInput.getText());
+                if (Boolean.parseBoolean(
+                        manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
+                    IDInput.clear();
+                    window.close();
+                } else {
+                    checkoutConfirm(file, IDfile, passfile);
+                    window.close();
+                }
+            } else {
+                errors.setText("Something Went Wrong. Try Again");
+                IDInput.clear();
+            }
+        });
+        IDInput.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                errors.setText("");
+                if (UIManager.isInt(IDInput, IDInput.getText())) {
+                    checkoutIDInput = Integer.parseInt(IDInput.getText());
+                    if (Boolean.parseBoolean(
+                            manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput, "")[0])) {
+                        IDInput.clear();
+                        window.close();
+                    } else {
+                        checkoutConfirm(file, IDfile, passfile);
+                        window.close();
+                    }
+                } else {
+                    errors.setText("Something Went Wrong. Try Again");
+                    IDInput.clear();
+                }
+            }
+        });
 
-		// Display window and wait for it to be closed before returning
-		window.setScene(checkout);
-		window.showAndWait();
-	}
+        checkoutLayout.getChildren().addAll(label, errors, IDInput, button);
+        checkoutLayout.setAlignment(Pos.CENTER);
+
+        // Display window and wait for it to be closed before returning
+        window.setScene(checkout);
+        window.showAndWait();
+    }
+
+    /**
+     * Checkout Confirm. Confirms password on items that require it for checkout
+     *
+     * @param file
+     * @param IDfile
+     * @param passfile
+     */
+    private static void checkoutConfirm(String file, String IDfile, String passfile) {
+        Stage window = new Stage();
+        VBox checkoutLayout = new VBox(10);
+        Scene checkout = new Scene(checkoutLayout);
+        Label label = new Label();
+        csvFileReader read = new csvFileReader();
+
+        UIManager.windowBasic(window, "Equipment Checkout Confirmation", 250, label, errors, checkout);
+
+        PasswordField passInput = new PasswordField();
+        passInput.setPromptText("Password");
+        String pass = (read.getItem(1000, passfile)).getName();
+
+        Button button = new Button("Check Out");
+        button.setOnAction(e -> {
+            errors.setText("");
+            if (pass.equals(passInput.getText())) {
+                if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
+                        passInput.getText())[0])) {
+                    window.close();
+                    passInput.clear();
+                }
+            } else {
+                errors.setText("Something Went Wrong. Try Again");
+                passInput.clear();
+            }
+        });
+        passInput.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                errors.setText("");
+                if (pass.equals(passInput.getText())) {
+                    if (Boolean.parseBoolean(manage.checkOut(checkoutItemInput, file, passfile, IDfile, checkoutIDInput,
+                            passInput.getText())[0])) {
+                        passInput.clear();
+                        window.close();
+                    }
+                } else {
+                    errors.setText("Something Went Wrong. Try Again");
+                    passInput.clear();
+                }
+            }
+        });
+
+        checkoutLayout.getChildren().addAll(label, errors, passInput, button);
+        checkoutLayout.setAlignment(Pos.CENTER);
+
+        // Display window and wait for it to be closed before returning
+        window.setScene(checkout);
+        window.showAndWait();
+    }
 }

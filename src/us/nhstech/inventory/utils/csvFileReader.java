@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class csvFileReader {
     // Deliminators
-    private static final String COMMA_SEPERATOR = ",";
+    private static final String COMMA_SEPARATOR = ",";
 
     // index of info
     private static final int ITEM_REF_IDX = 0;
@@ -74,7 +74,7 @@ public class csvFileReader {
             // check that there is info to read
             while ((line = fileReader.readLine()) != null) {
                 // split info into array
-                String[] tokens = line.split(COMMA_SEPERATOR);
+                String[] tokens = line.split(COMMA_SEPARATOR);
                 // check if reference equals the item we are looking for
                 if (Integer.parseInt(tokens[ITEM_REF_IDX]) == ref) {
                     // return the place of the item in the list
@@ -85,7 +85,7 @@ public class csvFileReader {
             }
             // catch errors and close reader
         } catch (Exception e) {
-            System.out.println("Error finding posistion");
+            System.out.println("Error finding position");
             e.printStackTrace();
         } finally {
             try {
@@ -107,10 +107,10 @@ public class csvFileReader {
      */
     public ArrayList<Item> getData(String fileName) {
         BufferedReader fileReader = null;
-        // create arraylist
+        // create ArrayList
         ArrayList<Item> items = null;
         try {
-            // initialize Arraylist
+            // initialize ArrayList
             items = new ArrayList<>();
 
             // initialize string
@@ -125,9 +125,9 @@ public class csvFileReader {
             while ((line = fileReader.readLine()) != null) {
                 // create string array with the read string, cut based on
                 // location of commas
-                String[] tokens = line.split(COMMA_SEPERATOR);
+                String[] tokens = line.split(COMMA_SEPARATOR);
 
-                // ensure information is formated correctly, and the line.split
+                // ensure information is formatted correctly, and the line.split
                 // resulted in multiple strings
                 if (tokens.length > 0) {
                     // create item
@@ -182,7 +182,7 @@ public class csvFileReader {
 
                 // create string array with the read string, cut based on
                 // location of commas
-                String[] tokens = line.split(COMMA_SEPERATOR);
+                String[] tokens = line.split(COMMA_SEPARATOR);
 
                 // ensure information is formated correctly, and the line.split
                 // resulted in multiple strings

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,7 @@ import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
+
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -143,6 +145,7 @@ public class Main extends Application {
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(borderLayout, 300, 250);
         scene.getStylesheets().add("style.css");
+        primaryStage.getIcons().add(new Image("images/icon.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

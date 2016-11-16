@@ -45,7 +45,7 @@ public class LogManager {
         // make list to be returned
         ArrayList<Log> returned = new ArrayList<>();
 
-        // make string arraylist
+        // make string ArrayList
         ArrayList<String> keyword = new ArrayList<>();
 
         // add the whole string as a keyword, covers for one word searches

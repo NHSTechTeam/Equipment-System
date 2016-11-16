@@ -373,7 +373,7 @@ package DataRecorderAndRetriever;
     -fx-padding: 0.0em 0.333333em 0.0em 0.333333em;  /*0 4 0 4 */
     -fx-border-style: solid;
     -fx-background-color: #c2c2c2;
-    -fx-border-width: 0.5px;
+    -fx-border-width: 1px;
 }
 
 /* TODO: try to scope the menu-item style to the contextmenu */
