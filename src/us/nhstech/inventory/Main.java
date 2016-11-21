@@ -16,15 +16,15 @@ import us.nhstech.inventory.ui.executive.ExecutiveMain;
 import us.nhstech.inventory.utils.Item;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileWriter;
-
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**
- * @author James Sonne & Devin Matte
- * @version v0.1-Beta
+ * @author Devin Matte
+ * @author James Sonne
+ * @version v0.2-Beta
  * @since 2016-02-11
  */
 

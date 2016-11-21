@@ -1,8 +1,9 @@
 package us.nhstech.inventory.utils;
 
 /**
- * @author James Sonne & Devin Matte
- * @version v0.1-Beta
+ * @author Devin Matte
+ * @author James Sonne
+ * @version v0.2-Beta
  * @since 2016-02-11
  */
 

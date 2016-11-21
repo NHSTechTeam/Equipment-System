@@ -13,6 +13,12 @@ import us.nhstech.inventory.ui.UIManager;
 import us.nhstech.inventory.utils.ItemManager;
 import us.nhstech.inventory.utils.csvFileReader;
 
+/**
+ * @author Devin Matte
+ * @author James Sonne
+ * @version v0.2-Beta
+ * @since 2016-02-11
+ */
 public class Checking {
 
     private static final ItemManager manage = new ItemManager();
