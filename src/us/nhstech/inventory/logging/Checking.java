@@ -33,7 +33,7 @@ public class Checking {
     public static void checkIn(String file) {
         Stage window = new Stage();
         VBox checkinLayout = new VBox(10);
-        Scene checkin = new Scene(checkinLayout);
+        Scene checkin = new Scene(checkinLayout, 250, 250);
         Label label = new Label();
 
         UIManager.windowBasic(window, "Equipment Checkin", 250, label, errors, checkin);
@@ -85,7 +85,7 @@ public class Checking {
     public static void checkOut(String file, String IDfile, String passfile) {
         Stage window = new Stage();
         VBox checkoutLayout = new VBox(10);
-        Scene checkout = new Scene(checkoutLayout);
+        Scene checkout = new Scene(checkoutLayout, 250, 250);
         Label label = new Label();
 
         UIManager.windowBasic(window, "Equipment Checkout Item", 250, label, errors, checkout);
@@ -204,7 +204,7 @@ public class Checking {
     private static void checkoutConfirm(String file, String IDfile, String passfile) {
         Stage window = new Stage();
         VBox checkoutLayout = new VBox(10);
-        Scene checkout = new Scene(checkoutLayout);
+        Scene checkout = new Scene(checkoutLayout, 250, 250);
         Label label = new Label();
         csvFileReader read = new csvFileReader();
 

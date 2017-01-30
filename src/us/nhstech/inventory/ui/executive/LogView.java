@@ -32,13 +32,13 @@ class LogView {
         Label errors = new Label();
         Stage window = new Stage();
         VBox logLayout = new VBox(10);
-        Scene Log = new Scene(logLayout, 250, 250);
+        Scene Log = new Scene(logLayout, 750, 750);
         TextField search = new TextField();
         search.setPromptText("Search");
         TableView<Log> table;
         Label label = new Label();
 
-        UIManager.windowBasic(window, "Checkout Log", 700, label, errors, Log);
+        UIManager.windowBasic(window, "Checkout Log", 750, label, errors, Log);
 
         manage.searchFor(log, search.getText());
 

@@ -32,13 +32,13 @@ class Registry {
         Label errors = new Label();
         Stage window = new Stage();
         VBox registryLayout = new VBox(10);
-        Scene registry = new Scene(registryLayout, 250, 250);
+        Scene registry = new Scene(registryLayout, 750, 750);
         TableView<Item> table;
         Label label = new Label();
         TextField search = new TextField();
         search.setPromptText("Search");
 
-        UIManager.windowBasic(window, "Item Manager", 700, label, errors, registry);
+        UIManager.windowBasic(window, "Item Manager", 750, label, errors, registry);
 
         manage.searchFor(file, search.getText());
 

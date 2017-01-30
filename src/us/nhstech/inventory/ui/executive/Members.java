@@ -30,7 +30,7 @@ class Members {
         Label errors = new Label();
         Stage window = new Stage();
         VBox membersLayout = new VBox(10);
-        Scene members = new Scene(membersLayout, 250, 250);
+        Scene members = new Scene(membersLayout, 600, 600);
         TableView<Item> table;
         Label label = new Label();
         TextField search = new TextField();
