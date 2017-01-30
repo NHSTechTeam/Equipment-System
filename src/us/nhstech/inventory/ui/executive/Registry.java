@@ -27,7 +27,7 @@ class Registry {
      * @param file Links the main item File
      */
     @SuppressWarnings("unchecked")
-	public static void registry(String file) {
+    public static void registry(String file) {
         ItemManager manage = new ItemManager();
         Label errors = new Label();
         Stage window = new Stage();

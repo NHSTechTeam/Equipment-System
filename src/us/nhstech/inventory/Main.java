@@ -45,7 +45,7 @@ public class Main extends Application {
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-	public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setMaximized(true);
         primaryStage.setTitle("Equipment Manager");
         Button executive = new Button("Executive Options");

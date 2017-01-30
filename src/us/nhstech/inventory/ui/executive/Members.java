@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 class Members {
     @SuppressWarnings("unchecked")
-	public static void memberManager(String file) {
+    public static void memberManager(String file) {
         ItemManager manage = new ItemManager();
         Label errors = new Label();
         Stage window = new Stage();
