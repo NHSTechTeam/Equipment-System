@@ -1,5 +1,6 @@
 Equipment-System
 ================
+[![Build Status](https://travis-ci.org/NHSTechTeam/Equipment-System.svg?branch=master)](https://travis-ci.org/NHSTechTeam/Equipment-System)
 
 ##### Equipment checkout tracking, simplified.
 
